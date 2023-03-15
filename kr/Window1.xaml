@@ -19,7 +19,7 @@
         </Border>
         <Label 
             Content="Мои документы "
-            Margin="0,-1,852,0" 
+            Margin="0,-1,996,0" 
             Foreground="White"
             FontFamily="Arial Black" 
             HorizontalAlignment="Right"
@@ -30,7 +30,7 @@
         <Image 
             Source="/Logo.png"
             Stretch="Fill" 
-            Margin="0,0,973,0"
+            Margin="0,0,1117,0"
             RenderTransformOrigin="0.5,0.5"
             HorizontalAlignment="Right"
             Width="32"
@@ -45,7 +45,7 @@
             AutoGenerateColumns="False"
             Margin="170,28,30,65"
             BorderBrush="#FF0A0806"
-            Background="#FFCD9A7B"
+            Background="#FF7D5E4B"
             >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Sotrudniki.ФИО}" Width="125" Header="Сотрудник" />
