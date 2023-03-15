@@ -5,56 +5,167 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kr"
         mc:Ignorable="d"
-        Title="Главная" Height="330" Width="1050" Background="#FF904825"  WindowStartupLocation="CenterScreen" Icon="/Logo.png">
+        Title="Главная"
+        Height="485"
+        Width="1170"
+        Background="#FF904825"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Logo.png"
+        ResizeMode="NoResize"
+        >
     <Grid>
         <Border BorderBrush="#FF4C1515" BorderThickness="20">
-            <Label Content="Мои документы " Margin="50,-20,835,270" Foreground="White" FontFamily="Arial Black"/>
+
         </Border>
-        <Image Source="/Logo.png" Stretch="Fill" Margin="0,0,973,294" RenderTransformOrigin="0.5,0.5" Height="21" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="32">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.298"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
+        <Label 
+            Content="Мои документы "
+            Margin="0,-1,852,0" 
+            Foreground="White"
+            FontFamily="Arial Black" 
+            HorizontalAlignment="Right"
+            Width="125" 
+            Height="24"
+            VerticalAlignment="Top"
+            />
+        <Image 
+            Source="/Logo.png"
+            Stretch="Fill" 
+            Margin="0,0,973,0"
+            RenderTransformOrigin="0.5,0.5"
+            HorizontalAlignment="Right"
+            Width="32"
+            Height="22"
+            VerticalAlignment="Top"
+            >
         </Image>
-        <DataGrid x:Name="Grida" IsReadOnly="True" ItemsSource="{Binding Jurnal_Ucheta}" AutoGenerateColumns="False" Margin="170,28,30,65">
+        <DataGrid 
+            x:Name="Grida"
+            IsReadOnly="True"
+            ItemsSource="{Binding Jurnal_Ucheta}" 
+            AutoGenerateColumns="False"
+            Margin="170,28,30,65"
+            BorderBrush="#FF0A0806"
+            Background="#FFCD9A7B"
+            >
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Sotrudniki.ФИО}" Width="*" Header="Сотрудник" ></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Client.ФИО}" Width="*" Header="Клиент" ></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding VidUslug.Наименование_услуги}" Width="*" Header="Услуга" ></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Дата_подписания,ConverterCulture=ru-Ru}" Width="80" Header="Дата" ></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Номер_договора}" Width="65" Header="Номер договора" ></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Комер_акта_накладной_}" Width="65" Header="Накладная" ></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Стоимость}" Width="50" Header="Стоимость" ></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Код_плательщика}" Width="65" Header="Код плательщика" ></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Sotrudniki.ФИО}" Width="125" Header="Сотрудник" />
+                <DataGridTextColumn Binding="{Binding Client.ФИО}" Width="*" Header="Клиент" />
+                <DataGridTextColumn Binding="{Binding VidUslug.Наименование_услуги}" Width="*" Header="Услуга" />
+                <DataGridTextColumn Binding="{Binding Дата_подписания, ConverterCulture=ru-Ru}" Width="100" Header="Дата" />
+                <DataGridTextColumn Binding="{Binding Номер_договора}" Width="100" Header="Номер договора" />
+                <DataGridTextColumn Binding="{Binding Комер_акта_накладной_}" Width="65" Header="Накладная" />
+                <DataGridTextColumn Binding="{Binding Стоимость}" Width="65" Header="Стоимость" />
+                <DataGridTextColumn Binding="{Binding Код_плательщика}" Width="65" Header="Код плательщика" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Изменить" Click="Edit" Width="75" Background="red"></Button>
+                            <Button Content="Edit" Click="Edit" Width="45" Background="GreenYellow"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Удалить" Click="delClick" Width="75" Background="GreenYellow"></Button>
+                            <Button Content="Del" Click="delClick" Width="45" Background="Red"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button FontFamily="Arial Rounded MT Bold" Content="Добавить" Margin="0,0,895,31" Height="30" VerticalAlignment="Bottom" Click="Addcl" HorizontalAlignment="Right" Width="125"/>
-        <DatePicker x:Name="After"  Text="C" Margin="0,0,470,34" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="125"></DatePicker>
-        <DatePicker x:Name="Before" Text="По" Margin="0,0,306,34" Height="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="127"/>
-        <Label FontFamily="Arial Rounded MT Bold" Content="С" Margin="0,0,600,36" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="21"></Label>
-        <Button FontFamily="Arial Rounded MT Bold" Content="Фильтрация" Margin="0,0,166,34" HorizontalAlignment="Right" Width="120" Height="26" VerticalAlignment="Bottom" Click="Filtr"/>
-        <Label FontFamily="Arial Rounded MT Bold" Content="По" Margin="0,0,433,34" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="32"/>
-        <Button FontFamily="Arial Rounded MT Bold" Content="Обновить" Margin="0,0,31,33" HorizontalAlignment="Right" Width="120" Height="26" VerticalAlignment="Bottom" Click="Filtr1"/>
-        <TextBox Margin="0,0,640,36" TextChanged="TextBox_TextChanged" Height="19" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="120"></TextBox>
-        <Label FontFamily="Arial Rounded MT Bold" Content="Поиск по клиенту" Margin="0,0,765,32" Height="27" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="120"/>
+        <Button 
+            FontFamily="Arial Rounded MT Bold"
+            Content="Добавить"
+            Margin="30,0,0,31" 
+            Height="30"
+            VerticalAlignment="Bottom" 
+            Click="Addcl"
+            HorizontalAlignment="Left"
+            Width="125"
+            Background="#FF9E521C"
+            BorderBrush="Black"
+            />
+        <DatePicker 
+            x:Name="After" 
+            Text="C"
+            Margin="0,0,470,34"
+            Height="25" 
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            Width="125"
+            BorderBrush="#FF0A0806"
+            Background="#FFCD9A7B"
+            />
+        <DatePicker
+            x:Name="Before" 
+            Text="По" 
+            Margin="0,0,306,34" 
+            Height="25"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right" 
+            Width="127"
+            BorderBrush="#FF0A0806"
+            Background="#FFCD9A7B"
+            />
+        <Label 
+            FontFamily="Arial Rounded MT Bold"
+            Content="С"
+            Margin="0,0,600,31" 
+            Height="27" 
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Right" 
+            Width="21"
+            />
+        <Button
+            FontFamily="Arial Rounded MT Bold"
+            Content="Фильтрация"
+            Margin="0,0,166,34"
+            HorizontalAlignment="Right"
+            Width="120"
+            Height="26" 
+            VerticalAlignment="Bottom"
+            Click="Filtr"
+            Background="#FF9E521C"
+            BorderBrush="Black"
+            />
+        <Label
+            FontFamily="Arial Rounded MT Bold"
+            Content="По" 
+            Margin="0,0,433,30" 
+            Height="27" 
+            VerticalAlignment="Bottom" 
+            HorizontalAlignment="Right"
+            Width="32"
+            />
+        <Button
+            FontFamily="Arial Rounded MT Bold"
+            Content="Обновить"
+            Margin="0,0,31,33"
+            HorizontalAlignment="Right"
+            Width="120" 
+            Height="26"
+            VerticalAlignment="Bottom"
+            Click="Filtr1"
+            Background="#FF9E521C"
+            BorderBrush="Black"
+            />
+        <TextBox
+            Margin="0,0,640,36"
+            TextChanged="TextBox_TextChanged"
+            Height="19"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            Width="120"
+            BorderBrush="#FF0A0806"
+            Background="#FFCD9A7B"
+            />
+        <Label
+            FontFamily="Arial Rounded MT Bold"
+            Content="Поиск по клиенту"
+            Margin="0,0,765,32"
+            Height="27"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            Width="120"
+            />
     </Grid>
-
 </Window>

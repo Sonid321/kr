@@ -10,58 +10,87 @@
         Height="480"
         Width="280"
         Background="#FF904825" 
-        WindowStartupLocation="CenterScreen" Icon="/Logo.png"
+        WindowStartupLocation="CenterScreen" 
+        Icon="/Logo.png"
+        ResizeMode="NoResize"
         >
     <Grid>
 
-        <Label Content="Дата подписания" HorizontalAlignment="Right" Margin="0,185,119,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"/>
-        <!--<TextBox
-        x:Name ="login"
-        BorderBrush="Black"
-        Background="#FFCD9A7B"
-        Margin="0,214,61,0"
-        TextWrapping="Wrap"
-        VerticalAlignment="Top"
-        materialDesign:HintAssist.Hint="Логин"
-            Text="{Binding Дата_подписания}" HorizontalAlignment="Right" Width="165"
-            />-->
-        <Label Content="Номер договора" HorizontalAlignment="Right" Margin="0,237,122,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"/>
+        <Label 
+            Content="Дата подписания"
+            Margin="59,167,0,0" 
+            VerticalAlignment="Top" 
+            FontFamily="Arial Rounded MT Bold" HorizontalAlignment="Left" Width="111"
+            />
+        <Label 
+            Content="Номер договора"
+            Margin="58,220,0,0"
+            VerticalAlignment="Top" 
+            FontFamily="Arial Rounded MT Bold" HorizontalAlignment="Left" Width="108"
+            />
         <TextBox
             x:Name ="login_Copy"
             BorderBrush="Black"
             Background="#FFCD9A7B"
-            Margin="0,266,62,0"
+            Margin="0,248,0,0"
             TextWrapping="Wrap"
             VerticalAlignment="Top"
             materialDesign:HintAssist.Hint="Логин"
-            Text="{Binding Номер_договора}" HorizontalAlignment="Right" Width="165"
+            Text="{Binding Номер_договора}"
+            HorizontalAlignment="Center"
+            Width="164"
             />
-        <Label Content="Номер Акта накладной" HorizontalAlignment="Right" Margin="0,289,83,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"/>
+        <Label
+            Content="Номер Акта накладной"
+            Margin="56,271,0,0"
+            VerticalAlignment="Top"
+            FontFamily="Arial Rounded MT Bold" HorizontalAlignment="Left" Width="147"
+            />
         <TextBox
             x:Name ="login_Copy1"
             BorderBrush="Black"
             Background="#FFCD9A7B"
-            Margin="0,318,61,0"
+            Margin="0,300,0,0"
             TextWrapping="Wrap"
             VerticalAlignment="Top"
             materialDesign:HintAssist.Hint="Логин"
-            Text="{Binding Комер_акта_накладной_}" HorizontalAlignment="Right" Width="167"
+            Text="{Binding Комер_акта_накладной_}" 
+            HorizontalAlignment="Center"
+            Width="164"
             />
-        <Label Content="Стоимость" HorizontalAlignment="Right" Margin="0,336,158,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"/>
+        <Label
+            Content="Стоимость"
+            Margin="56,318,0,0"
+            VerticalAlignment="Top"
+            FontFamily="Arial Rounded MT Bold" HorizontalAlignment="Left" Width="72"
+            />
         <TextBox
             x:Name ="login_Copy2"
             BorderBrush="Black"
             Background="#FFCD9A7B"
-            Margin="0,360,63,0"
+            Margin="0,342,0,0"
             TextWrapping="Wrap"
             VerticalAlignment="Top"
             materialDesign:HintAssist.Hint="Логин"
-            Text="{Binding Стоимость}" HorizontalAlignment="Right" Width="165"
+            Text="{Binding Стоимость}" 
+            HorizontalAlignment="Center"
+            Width="164"
             />
-        <Button FontFamily="Arial Rounded MT Bold" Content="Добавить" HorizontalAlignment="Right" Margin="0,424,156,0" Width="70" Background="#FF9E521C" BorderBrush="Black" Height="18" VerticalAlignment="Top" Click="Button_Click_1"/>
+        <Button 
+            FontFamily="Arial Rounded MT Bold" 
+            Content="Добавить"
+            HorizontalAlignment="Right"
+            Margin="0,411,152,0"
+            Width="70"
+            Background="#FF9E521C"
+            BorderBrush="Black"
+            Height="18" 
+            VerticalAlignment="Top"
+            Click="Button_Click_1"
+            />
         <Button FontFamily="Arial Rounded MT Bold"
                 Content="Назад"
-                Margin="149,424,0,0"
+                Margin="152,411,0,0"
                 Background="#FF9E521C"
                 BorderBrush="Black"
                 HorizontalAlignment="Left"
@@ -74,56 +103,71 @@
             SelectedIndex="{Binding VidUslug}"
             ItemsSource="{Binding VidUslug}"
             DisplayMemberPath="Наименование_услуги"
-            HorizontalAlignment="Right"
-            Margin="0,158,63,0"
+            HorizontalAlignment="Center"
+            Margin="0,140,0,0"
             VerticalAlignment="Top"
-            Width="162"/>
+            Width="164" BorderBrush="#FF0A0404">
+            <ComboBox.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FFE05454" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.OpacityMask>
+        </ComboBox>
         <ComboBox x:Name="Clien"
                   SelectedItem="{Binding Client}"
                   ItemsSource="{Binding Client}"
                   DisplayMemberPath="ФИО"
-                  HorizontalAlignment="Right"
-                  Margin="0,102,63,0"
+                  HorizontalAlignment="Center"
+                  Margin="0,84,0,0"
                   VerticalAlignment="Top"
-                  Width="163"/>
+                  Width="164"/>
         <ComboBox x:Name="Sotr1"
                   SelectedItem="{Binding КодCотрудника}"
                   ItemsSource="{Binding КодCотрудника}"
                   DisplayMemberPath="ФИО"
-                  Margin="0,51,63,0"
+                  Margin="0,33,0,0"
                   VerticalAlignment="Top"
-                  HorizontalAlignment="Right"
-                  Width="163"/>
+                  HorizontalAlignment="Center"
+                  Width="164"/>
         <Label Content="Код плательщика"
-               HorizontalAlignment="Right"
-               Margin="0,377,116,0"
+               Margin="56,359,0,0"
                VerticalAlignment="Top"
-               FontFamily="Arial Rounded MT Bold"/>
+               FontFamily="Arial Rounded MT Bold" HorizontalAlignment="Left" Width="114"/>
         <TextBox
             x:Name ="login_Copy3"
             BorderBrush="Black"
             Background="#FFCD9A7B"
-            Margin="0,401,63,0"
+            Margin="0,383,0,0"
             TextWrapping="Wrap"
             VerticalAlignment="Top"
             materialDesign:HintAssist.Hint="Логин"
             Text="{Binding Код_плательщика}"
-            HorizontalAlignment="Right"
-            Width="165"
+            HorizontalAlignment="Center"
+            Width="164"
             />
         <Label Content="Услуга"
-               HorizontalAlignment="Right"
-               Margin="0,129,183,0"
+               Margin="59,111,0,0"
                VerticalAlignment="Top"
-               FontFamily="Arial Rounded MT Bold"/>
-        <Label Content="Клиент" HorizontalAlignment="Right" Margin="0,78,173,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"/>
-        <Label Content="Сотрудник" HorizontalAlignment="Right" Margin="0,27,157,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"/>
+               FontFamily="Arial Rounded MT Bold" HorizontalAlignment="Left" Width="50"
+               />
+        <Label Content="Клиент"
+               Margin="59,60,0,0"
+               VerticalAlignment="Top"
+               FontFamily="Arial Rounded MT Bold" HorizontalAlignment="Left" Width="52"
+               />
+        <Label 
+            Content="Сотрудник"
+            Margin="58,9,0,0" 
+            VerticalAlignment="Top"
+            FontFamily="Arial Rounded MT Bold" HorizontalAlignment="Left" Width="73"
+            />
         <DatePicker
             x:Name="DataPic"
-            HorizontalAlignment="Right"
-            Margin="0,213,60,0"
+            HorizontalAlignment="Center"
+            Margin="0,195,0,0"
             VerticalAlignment="Top"
-            Width="170"
+            Width="164"
             Text="{Binding Дата_подписания}"
             />
 

@@ -7,10 +7,13 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="kr.Window2"
         mc:Ignorable="d"
         Title="Изменение" Height="475" Width="405"
-            Background="#FF904825" 
-        WindowStartupLocation="CenterScreen" Icon="/Logo.png">
+        Background="#FF904825" 
+        WindowStartupLocation="CenterScreen" 
+        Icon="/Logo.png"
+        ResizeMode="NoResize"
+        >
     <Grid>
-        <DataGrid x:Name="Grida" IsReadOnly="True" ItemsSource="{Binding Sotrudniki}" AutoGenerateColumns="False" Margin="210,5,25,342">
+        <DataGrid x:Name="Grida" IsReadOnly="True" ItemsSource="{Binding Sotrudniki}" AutoGenerateColumns="False" Margin="210,0,0,342" Height="112" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="170">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding КодCотрудника}" Width="20" Header="ID" ></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding ФИО}" Width="300" Header="ФИО" ></DataGridTextColumn>
@@ -27,7 +30,7 @@
         materialDesign:HintAssist.Hint="Логин"
             Text="{Binding Дата_подписания}" HorizontalAlignment="Right" Width="165"
             />-->
-        <Label Content="Номер договора" HorizontalAlignment="Left" Margin="24,208,0,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"/>
+        <Label Content="Номер договора" HorizontalAlignment="Right" Margin="0,208,273,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"/>
         <TextBox
             x:Name ="login_Copy"
             BorderBrush="Black"
@@ -72,7 +75,7 @@
                 Click="Button_Click_1"/>
         <Button FontFamily="Arial Rounded MT Bold"
             Content="Назад"
-            Margin="124,411,0,0"
+            Margin="310,411,0,0"
             Background="#FF9E521C"
             BorderBrush="Black"
             HorizontalAlignment="Left"
@@ -104,13 +107,13 @@
             FontFamily="Arial Rounded MT Bold"/>
         <Label Content="Клиент" HorizontalAlignment="Right" Margin="0,49,329,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"/>
         <Label Content="Сотрудник" HorizontalAlignment="Right" Margin="0,-2,308,0" VerticalAlignment="Top" FontFamily="Arial Rounded MT Bold"/>
-        <DataGrid x:Name="Grida1" IsReadOnly="True" ItemsSource="{Binding Client}" AutoGenerateColumns="False" Margin="210,122,25,204">
+        <DataGrid x:Name="Grida1" IsReadOnly="True" ItemsSource="{Binding Client}" AutoGenerateColumns="False" Margin="210,0,0,204" Height="133" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="170">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Код_клиента}" Width="20" Header="ID" ></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding ФИО}" Width="300" Header="ФИО" ></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid x:Name="Grida2" IsReadOnly="True" ItemsSource="{Binding VidUslug}" AutoGenerateColumns="False" Margin="210,265,25,44">
+        <DataGrid x:Name="Grida2" IsReadOnly="True" ItemsSource="{Binding VidUslug}" AutoGenerateColumns="False" Margin="210,0,0,69" Height="125" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="170">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Код_услуги}" Width="20" Header="ID" ></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding Наименование_услуги}" Width="300" Header="Услуга" ></DataGridTextColumn>
