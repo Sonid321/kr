@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище PraktikaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Код_клиента" />
+          </Key>
+          <Property Name="Код_клиента" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование_предприятия" Type="varchar" MaxLength="50" />
+          <Property Name="Код_района" Type="int" />
+          <Property Name="Адрес" Type="nvarchar(max)" />
+          <Property Name="ФИО" Type="varchar" MaxLength="50" />
+          <Property Name="Телефон" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Должность" Type="nvarchar(max)" />
+          <Property Name="Код_плательщика" Type="int" />
+        </EntityType>
+        <EntityType Name="Gruppa">
+          <Key>
+            <PropertyRef Name="Код_группы" />
+          </Key>
+          <Property Name="Код_группы" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Группа" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Jurnal Ucheta">
+          <Key>
+            <PropertyRef Name="Код_записи" />
+          </Key>
+          <Property Name="Код_записи" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_сотрудника" Type="int" />
+          <Property Name="Код_клиента" Type="int" />
+          <Property Name="Код_услуги" Type="int" />
+          <Property Name="Дата_подписания" Type="date" />
+          <Property Name="Номер_договора" Type="int" />
+          <Property Name="Комер_акта(накладной)" Type="int" />
+          <Property Name="Стоимость" Type="money" />
+          <Property Name="Код_плательщика" Type="int" />
+        </EntityType>
+        <EntityType Name="Raion">
+          <Key>
+            <PropertyRef Name="Код_района" />
+          </Key>
+          <Property Name="Код_района" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Район" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Roules">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Roles" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Sotrudniki">
+          <Key>
+            <PropertyRef Name="КодCотрудника" />
+          </Key>
+          <Property Name="КодCотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО" Type="varchar(max)" />
+          <Property Name="Пол" Type="varchar" MaxLength="50" />
+          <Property Name="Телефон" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Адрес" Type="varchar" MaxLength="50" />
+          <Property Name="Документ" Type="varchar" MaxLength="50" />
+          <Property Name="Серия/Номер" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Семейное_положение" Type="varchar" MaxLength="50" />
+          <Property Name="Квалификация" Type="varchar" MaxLength="50" />
+          <Property Name="Код_специальности" Type="int" />
+        </EntityType>
+        <EntityType Name="Special">
+          <Key>
+            <PropertyRef Name="Код_специальности" />
+          </Key>
+          <Property Name="Код_специальности" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Специальность" Type="varchar" MaxLength="50" />
+          <Property Name="Квалификация" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Praktika.dbo.Users" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role" Type="int" />
+          <Property Name="FIO" Type="nvarchar(max)" />
+          <Property Name="Login" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="VidUslug">
+          <Key>
+            <PropertyRef Name="Код_услуги" />
+          </Key>
+          <Property Name="Код_услуги" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование_услуги" Type="nvarchar" MaxLength="50" />
+          <Property Name="Код_группы" Type="int" />
+          <Property Name="Единица_измерения" Type="nvarchar" MaxLength="50" />
+          <Property Name="Объем_работ" Type="nvarchar" MaxLength="50" />
+          <Property Name="Базовая_стоимость" Type="money" />
+        </EntityType>
+        <Association Name="FK_Client_Raion">
+          <End Role="Raion" Type="Self.Raion" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Raion">
+              <PropertyRef Name="Код_района" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Код_района" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal Ucheta_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Jurnal Ucheta" Type="Self.Jurnal Ucheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Код_клиента" />
+            </Principal>
+            <Dependent Role="Jurnal Ucheta">
+              <PropertyRef Name="Код_клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal Ucheta_Sotrudniki">
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="0..1" />
+          <End Role="Jurnal Ucheta" Type="Self.Jurnal Ucheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudniki">
+              <PropertyRef Name="КодCотрудника" />
+            </Principal>
+            <Dependent Role="Jurnal Ucheta">
+              <PropertyRef Name="Код_сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal Ucheta_VidUslug">
+          <End Role="VidUslug" Type="Self.VidUslug" Multiplicity="0..1" />
+          <End Role="Jurnal Ucheta" Type="Self.Jurnal Ucheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VidUslug">
+              <PropertyRef Name="Код_услуги" />
+            </Principal>
+            <Dependent Role="Jurnal Ucheta">
+              <PropertyRef Name="Код_услуги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudniki_Special">
+          <End Role="Special" Type="Self.Special" Multiplicity="0..1" />
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Special">
+              <PropertyRef Name="Код_специальности" />
+            </Principal>
+            <Dependent Role="Sotrudniki">
+              <PropertyRef Name="Код_специальности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Roules">
+          <End Role="Roules" Type="Self.Roules" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roules">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VidUslug_Gruppa">
+          <End Role="Gruppa" Type="Self.Gruppa" Multiplicity="0..1" />
+          <End Role="VidUslug" Type="Self.VidUslug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gruppa">
+              <PropertyRef Name="Код_группы" />
+            </Principal>
+            <Dependent Role="VidUslug">
+              <PropertyRef Name="Код_группы" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище PraktikaModelContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gruppa" EntityType="Self.Gruppa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jurnal Ucheta" EntityType="Self.Jurnal Ucheta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Raion" EntityType="Self.Raion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roules" EntityType="Self.Roules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrudniki" EntityType="Self.Sotrudniki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Special" EntityType="Self.Special" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VidUslug" EntityType="Self.VidUslug" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Users].[ID] AS [ID], 
+    [Users].[Role] AS [Role], 
+    [Users].[FIO] AS [FIO], 
+    [Users].[Login] AS [Login], 
+    [Users].[Password] AS [Password]
+    FROM [dbo].[Users] AS [Users]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Client_Raion" Association="Self.FK_Client_Raion">
+            <End Role="Raion" EntitySet="Raion" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal Ucheta_Client" Association="Self.FK_Jurnal Ucheta_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Jurnal Ucheta" EntitySet="Jurnal Ucheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal Ucheta_Sotrudniki" Association="Self.FK_Jurnal Ucheta_Sotrudniki">
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+            <End Role="Jurnal Ucheta" EntitySet="Jurnal Ucheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal Ucheta_VidUslug" Association="Self.FK_Jurnal Ucheta_VidUslug">
+            <End Role="VidUslug" EntitySet="VidUslug" />
+            <End Role="Jurnal Ucheta" EntitySet="Jurnal Ucheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrudniki_Special" Association="Self.FK_Sotrudniki_Special">
+            <End Role="Special" EntitySet="Special" />
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Roules" Association="Self.FK_Users_Roules">
+            <End Role="Roules" EntitySet="Roules" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VidUslug_Gruppa" Association="Self.FK_VidUslug_Gruppa">
+            <End Role="Gruppa" EntitySet="Gruppa" />
+            <End Role="VidUslug" EntitySet="VidUslug" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PraktikaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Код_клиента" />
+          </Key>
+          <Property Name="Код_клиента" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование_предприятия" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Код_района" Type="Int32" />
+          <Property Name="Адрес" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ФИО" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Телефон" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Должность" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Код_плательщика" Type="Int32" />
+          <NavigationProperty Name="Raion" Relationship="Self.FK_Client_Raion" FromRole="Client" ToRole="Raion" />
+          <NavigationProperty Name="Jurnal_Ucheta" Relationship="Self.FK_Jurnal_Ucheta_Client" FromRole="Client" ToRole="Jurnal_Ucheta" />
+        </EntityType>
+        <EntityType Name="Gruppa">
+          <Key>
+            <PropertyRef Name="Код_группы" />
+          </Key>
+          <Property Name="Код_группы" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Группа" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="VidUslug" Relationship="Self.FK_VidUslug_Gruppa" FromRole="Gruppa" ToRole="VidUslug" />
+        </EntityType>
+        <EntityType Name="Jurnal_Ucheta">
+          <Key>
+            <PropertyRef Name="Код_записи" />
+          </Key>
+          <Property Name="Код_записи" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_сотрудника" Type="Int32" />
+          <Property Name="Код_клиента" Type="Int32" />
+          <Property Name="Код_услуги" Type="Int32" />
+          <Property Name="Дата_подписания" Type="DateTime" Precision="0" />
+          <Property Name="Номер_договора" Type="Int32" />
+          <Property Name="Комер_акта_накладной_" Type="Int32" />
+          <Property Name="Стоимость" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Код_плательщика" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Jurnal_Ucheta_Client" FromRole="Jurnal_Ucheta" ToRole="Client" />
+          <NavigationProperty Name="Sotrudniki" Relationship="Self.FK_Jurnal_Ucheta_Sotrudniki" FromRole="Jurnal_Ucheta" ToRole="Sotrudniki" />
+          <NavigationProperty Name="VidUslug" Relationship="Self.FK_Jurnal_Ucheta_VidUslug" FromRole="Jurnal_Ucheta" ToRole="VidUslug" />
+        </EntityType>
+        <EntityType Name="Raion">
+          <Key>
+            <PropertyRef Name="Код_района" />
+          </Key>
+          <Property Name="Код_района" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Район" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Raion" FromRole="Raion" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Roules">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Roles" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roules" FromRole="Roules" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Sotrudniki">
+          <Key>
+            <PropertyRef Name="КодCотрудника" />
+          </Key>
+          <Property Name="КодCотрудника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Пол" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Телефон" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Документ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Серия_Номер" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Семейное_положение" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Квалификация" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Код_специальности" Type="Int32" />
+          <NavigationProperty Name="Jurnal_Ucheta" Relationship="Self.FK_Jurnal_Ucheta_Sotrudniki" FromRole="Sotrudniki" ToRole="Jurnal_Ucheta" />
+          <NavigationProperty Name="Special" Relationship="Self.FK_Sotrudniki_Special" FromRole="Sotrudniki" ToRole="Special" />
+        </EntityType>
+        <EntityType Name="Special">
+          <Key>
+            <PropertyRef Name="Код_специальности" />
+          </Key>
+          <Property Name="Код_специальности" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Специальность" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Квалификация" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Sotrudniki" Relationship="Self.FK_Sotrudniki_Special" FromRole="Special" ToRole="Sotrudniki" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="VidUslug">
+          <Key>
+            <PropertyRef Name="Код_услуги" />
+          </Key>
+          <Property Name="Код_услуги" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование_услуги" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Код_группы" Type="Int32" />
+          <Property Name="Единица_измерения" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Объем_работ" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Базовая_стоимость" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Gruppa" Relationship="Self.FK_VidUslug_Gruppa" FromRole="VidUslug" ToRole="Gruppa" />
+          <NavigationProperty Name="Jurnal_Ucheta" Relationship="Self.FK_Jurnal_Ucheta_VidUslug" FromRole="VidUslug" ToRole="Jurnal_Ucheta" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role" Type="Int32" />
+          <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Roules" Relationship="Self.FK_Users_Roules" FromRole="Users" ToRole="Roules" />
+        </EntityType>
+        <Association Name="FK_Client_Raion">
+          <End Role="Raion" Type="Self.Raion" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Raion">
+              <PropertyRef Name="Код_района" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Код_района" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal_Ucheta_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Jurnal_Ucheta" Type="Self.Jurnal_Ucheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Код_клиента" />
+            </Principal>
+            <Dependent Role="Jurnal_Ucheta">
+              <PropertyRef Name="Код_клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VidUslug_Gruppa">
+          <End Role="Gruppa" Type="Self.Gruppa" Multiplicity="0..1" />
+          <End Role="VidUslug" Type="Self.VidUslug" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gruppa">
+              <PropertyRef Name="Код_группы" />
+            </Principal>
+            <Dependent Role="VidUslug">
+              <PropertyRef Name="Код_группы" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal_Ucheta_Sotrudniki">
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="0..1" />
+          <End Role="Jurnal_Ucheta" Type="Self.Jurnal_Ucheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudniki">
+              <PropertyRef Name="КодCотрудника" />
+            </Principal>
+            <Dependent Role="Jurnal_Ucheta">
+              <PropertyRef Name="Код_сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jurnal_Ucheta_VidUslug">
+          <End Role="VidUslug" Type="Self.VidUslug" Multiplicity="0..1" />
+          <End Role="Jurnal_Ucheta" Type="Self.Jurnal_Ucheta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VidUslug">
+              <PropertyRef Name="Код_услуги" />
+            </Principal>
+            <Dependent Role="Jurnal_Ucheta">
+              <PropertyRef Name="Код_услуги" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Roules">
+          <End Role="Roules" Type="Self.Roules" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roules">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sotrudniki_Special">
+          <End Role="Special" Type="Self.Special" Multiplicity="0..1" />
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Special">
+              <PropertyRef Name="Код_специальности" />
+            </Principal>
+            <Dependent Role="Sotrudniki">
+              <PropertyRef Name="Код_специальности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PraktikaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Gruppa" EntityType="Self.Gruppa" />
+          <EntitySet Name="Jurnal_Ucheta" EntityType="Self.Jurnal_Ucheta" />
+          <EntitySet Name="Raion" EntityType="Self.Raion" />
+          <EntitySet Name="Roules" EntityType="Self.Roules" />
+          <EntitySet Name="Sotrudniki" EntityType="Self.Sotrudniki" />
+          <EntitySet Name="Special" EntityType="Self.Special" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="VidUslug" EntityType="Self.VidUslug" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Client_Raion" Association="Self.FK_Client_Raion">
+            <End Role="Raion" EntitySet="Raion" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal_Ucheta_Client" Association="Self.FK_Jurnal_Ucheta_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Jurnal_Ucheta" EntitySet="Jurnal_Ucheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VidUslug_Gruppa" Association="Self.FK_VidUslug_Gruppa">
+            <End Role="Gruppa" EntitySet="Gruppa" />
+            <End Role="VidUslug" EntitySet="VidUslug" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal_Ucheta_Sotrudniki" Association="Self.FK_Jurnal_Ucheta_Sotrudniki">
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+            <End Role="Jurnal_Ucheta" EntitySet="Jurnal_Ucheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jurnal_Ucheta_VidUslug" Association="Self.FK_Jurnal_Ucheta_VidUslug">
+            <End Role="VidUslug" EntitySet="VidUslug" />
+            <End Role="Jurnal_Ucheta" EntitySet="Jurnal_Ucheta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Roules" Association="Self.FK_Users_Roules">
+            <End Role="Roules" EntitySet="Roules" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sotrudniki_Special" Association="Self.FK_Sotrudniki_Special">
+            <End Role="Special" EntitySet="Special" />
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PraktikaModelContainer" CdmEntityContainer="PraktikaEntities">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="PraktikaModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Код_клиента" ColumnName="Код_клиента" />
+                <ScalarProperty Name="Наименование_предприятия" ColumnName="Наименование_предприятия" />
+                <ScalarProperty Name="Код_района" ColumnName="Код_района" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Должность" ColumnName="Должность" />
+                <ScalarProperty Name="Код_плательщика" ColumnName="Код_плательщика" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gruppa">
+            <EntityTypeMapping TypeName="PraktikaModel.Gruppa">
+              <MappingFragment StoreEntitySet="Gruppa">
+                <ScalarProperty Name="Код_группы" ColumnName="Код_группы" />
+                <ScalarProperty Name="Группа" ColumnName="Группа" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jurnal_Ucheta">
+            <EntityTypeMapping TypeName="PraktikaModel.Jurnal_Ucheta">
+              <MappingFragment StoreEntitySet="Jurnal Ucheta">
+                <ScalarProperty Name="Код_записи" ColumnName="Код_записи" />
+                <ScalarProperty Name="Код_сотрудника" ColumnName="Код_сотрудника" />
+                <ScalarProperty Name="Код_клиента" ColumnName="Код_клиента" />
+                <ScalarProperty Name="Код_услуги" ColumnName="Код_услуги" />
+                <ScalarProperty Name="Дата_подписания" ColumnName="Дата_подписания" />
+                <ScalarProperty Name="Номер_договора" ColumnName="Номер_договора" />
+                <ScalarProperty Name="Комер_акта_накладной_" ColumnName="Комер_акта(накладной)" />
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+                <ScalarProperty Name="Код_плательщика" ColumnName="Код_плательщика" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Raion">
+            <EntityTypeMapping TypeName="PraktikaModel.Raion">
+              <MappingFragment StoreEntitySet="Raion">
+                <ScalarProperty Name="Код_района" ColumnName="Код_района" />
+                <ScalarProperty Name="Район" ColumnName="Район" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roules">
+            <EntityTypeMapping TypeName="PraktikaModel.Roules">
+              <MappingFragment StoreEntitySet="Roules">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Roles" ColumnName="Roles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrudniki">
+            <EntityTypeMapping TypeName="PraktikaModel.Sotrudniki">
+              <MappingFragment StoreEntitySet="Sotrudniki">
+                <ScalarProperty Name="КодCотрудника" ColumnName="КодCотрудника" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Пол" ColumnName="Пол" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Документ" ColumnName="Документ" />
+                <ScalarProperty Name="Серия_Номер" ColumnName="Серия/Номер" />
+                <ScalarProperty Name="Семейное_положение" ColumnName="Семейное_положение" />
+                <ScalarProperty Name="Квалификация" ColumnName="Квалификация" />
+                <ScalarProperty Name="Код_специальности" ColumnName="Код_специальности" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Special">
+            <EntityTypeMapping TypeName="PraktikaModel.Special">
+              <MappingFragment StoreEntitySet="Special">
+                <ScalarProperty Name="Код_специальности" ColumnName="Код_специальности" />
+                <ScalarProperty Name="Специальность" ColumnName="Специальность" />
+                <ScalarProperty Name="Квалификация" ColumnName="Квалификация" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PraktikaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VidUslug">
+            <EntityTypeMapping TypeName="PraktikaModel.VidUslug">
+              <MappingFragment StoreEntitySet="VidUslug">
+                <ScalarProperty Name="Код_услуги" ColumnName="Код_услуги" />
+                <ScalarProperty Name="Наименование_услуги" ColumnName="Наименование_услуги" />
+                <ScalarProperty Name="Код_группы" ColumnName="Код_группы" />
+                <ScalarProperty Name="Единица_измерения" ColumnName="Единица_измерения" />
+                <ScalarProperty Name="Объем_работ" ColumnName="Объем_работ" />
+                <ScalarProperty Name="Базовая_стоимость" ColumnName="Базовая_стоимость" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PraktikaModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
