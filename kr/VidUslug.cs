@@ -20,7 +20,7 @@ namespace kr
             this.Jurnal_Ucheta = new HashSet<Jurnal_Ucheta>();
         }
     
-        public int Код_услуги { get; set; }
+        public int КодУслуги { get; set; }
         public string Наименование_услуги { get; set; }
         public Nullable<int> Код_группы { get; set; }
         public string Единица_измерения { get; set; }

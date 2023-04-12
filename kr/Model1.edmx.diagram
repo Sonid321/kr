@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a00d69f8490748c19eb0b8fe857ff03b" Name="Diagram1">
+      <Diagram DiagramId="b5d20dde68244363b8d5e1159fe8b4f1" Name="Diagram1">
         <EntityTypeShape EntityType="PraktikaModel.Client" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PraktikaModel.Gruppa" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PraktikaModel.Jurnal_Ucheta" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />

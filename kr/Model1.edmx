@@ -7,9 +7,9 @@
       <Schema Namespace="Хранилище PraktikaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client">
           <Key>
-            <PropertyRef Name="Код_клиента" />
+            <PropertyRef Name="КодKлиента" />
           </Key>
-          <Property Name="Код_клиента" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="КодKлиента" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Наименование_предприятия" Type="varchar" MaxLength="50" />
           <Property Name="Код_района" Type="int" />
           <Property Name="Адрес" Type="nvarchar(max)" />
@@ -70,9 +70,9 @@
         </EntityType>
         <EntityType Name="Special">
           <Key>
-            <PropertyRef Name="Код_специальности" />
+            <PropertyRef Name="Код_спец" />
           </Key>
-          <Property Name="Код_специальности" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_спец" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Специальность" Type="varchar" MaxLength="50" />
           <Property Name="Квалификация" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -100,9 +100,9 @@
         </EntityType>
         <EntityType Name="VidUslug">
           <Key>
-            <PropertyRef Name="Код_услуги" />
+            <PropertyRef Name="КодУслуги" />
           </Key>
-          <Property Name="Код_услуги" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="КодУслуги" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Наименование_услуги" Type="nvarchar" MaxLength="50" />
           <Property Name="Код_группы" Type="int" />
           <Property Name="Единица_измерения" Type="nvarchar" MaxLength="50" />
@@ -126,7 +126,7 @@
           <End Role="Jurnal Ucheta" Type="Self.Jurnal Ucheta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
-              <PropertyRef Name="Код_клиента" />
+              <PropertyRef Name="КодKлиента" />
             </Principal>
             <Dependent Role="Jurnal Ucheta">
               <PropertyRef Name="Код_клиента" />
@@ -150,7 +150,7 @@
           <End Role="Jurnal Ucheta" Type="Self.Jurnal Ucheta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="VidUslug">
-              <PropertyRef Name="Код_услуги" />
+              <PropertyRef Name="КодУслуги" />
             </Principal>
             <Dependent Role="Jurnal Ucheta">
               <PropertyRef Name="Код_услуги" />
@@ -162,7 +162,7 @@
           <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Special">
-              <PropertyRef Name="Код_специальности" />
+              <PropertyRef Name="Код_спец" />
             </Principal>
             <Dependent Role="Sotrudniki">
               <PropertyRef Name="Код_специальности" />
@@ -248,9 +248,9 @@
       <Schema Namespace="PraktikaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Client">
           <Key>
-            <PropertyRef Name="Код_клиента" />
+            <PropertyRef Name="КодKлиента" />
           </Key>
-          <Property Name="Код_клиента" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="КодKлиента" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Наименование_предприятия" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Код_района" Type="Int32" />
           <Property Name="Адрес" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -321,9 +321,9 @@
         </EntityType>
         <EntityType Name="Special">
           <Key>
-            <PropertyRef Name="Код_специальности" />
+            <PropertyRef Name="Код_спец" />
           </Key>
-          <Property Name="Код_специальности" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_спец" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Специальность" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Квалификация" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Sotrudniki" Relationship="Self.FK_Sotrudniki_Special" FromRole="Special" ToRole="Sotrudniki" />
@@ -340,9 +340,9 @@
         </EntityType>
         <EntityType Name="VidUslug">
           <Key>
-            <PropertyRef Name="Код_услуги" />
+            <PropertyRef Name="КодУслуги" />
           </Key>
-          <Property Name="Код_услуги" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="КодУслуги" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Наименование_услуги" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Код_группы" Type="Int32" />
           <Property Name="Единица_измерения" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -379,7 +379,7 @@
           <End Role="Jurnal_Ucheta" Type="Self.Jurnal_Ucheta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
-              <PropertyRef Name="Код_клиента" />
+              <PropertyRef Name="КодKлиента" />
             </Principal>
             <Dependent Role="Jurnal_Ucheta">
               <PropertyRef Name="Код_клиента" />
@@ -415,7 +415,7 @@
           <End Role="Jurnal_Ucheta" Type="Self.Jurnal_Ucheta" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="VidUslug">
-              <PropertyRef Name="Код_услуги" />
+              <PropertyRef Name="КодУслуги" />
             </Principal>
             <Dependent Role="Jurnal_Ucheta">
               <PropertyRef Name="Код_услуги" />
@@ -439,7 +439,7 @@
           <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Special">
-              <PropertyRef Name="Код_специальности" />
+              <PropertyRef Name="Код_спец" />
             </Principal>
             <Dependent Role="Sotrudniki">
               <PropertyRef Name="Код_специальности" />
@@ -495,7 +495,7 @@
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="PraktikaModel.Client">
               <MappingFragment StoreEntitySet="Client">
-                <ScalarProperty Name="Код_клиента" ColumnName="Код_клиента" />
+                <ScalarProperty Name="КодKлиента" ColumnName="КодKлиента" />
                 <ScalarProperty Name="Наименование_предприятия" ColumnName="Наименование_предприятия" />
                 <ScalarProperty Name="Код_района" ColumnName="Код_района" />
                 <ScalarProperty Name="Адрес" ColumnName="Адрес" />
@@ -564,7 +564,7 @@
           <EntitySetMapping Name="Special">
             <EntityTypeMapping TypeName="PraktikaModel.Special">
               <MappingFragment StoreEntitySet="Special">
-                <ScalarProperty Name="Код_специальности" ColumnName="Код_специальности" />
+                <ScalarProperty Name="Код_спец" ColumnName="Код_спец" />
                 <ScalarProperty Name="Специальность" ColumnName="Специальность" />
                 <ScalarProperty Name="Квалификация" ColumnName="Квалификация" />
               </MappingFragment>
@@ -584,7 +584,7 @@
           <EntitySetMapping Name="VidUslug">
             <EntityTypeMapping TypeName="PraktikaModel.VidUslug">
               <MappingFragment StoreEntitySet="VidUslug">
-                <ScalarProperty Name="Код_услуги" ColumnName="Код_услуги" />
+                <ScalarProperty Name="КодУслуги" ColumnName="КодУслуги" />
                 <ScalarProperty Name="Наименование_услуги" ColumnName="Наименование_услуги" />
                 <ScalarProperty Name="Код_группы" ColumnName="Код_группы" />
                 <ScalarProperty Name="Единица_измерения" ColumnName="Единица_измерения" />

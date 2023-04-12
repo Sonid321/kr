@@ -20,7 +20,7 @@ namespace kr
             this.Sotrudniki = new HashSet<Sotrudniki>();
         }
     
-        public int Код_специальности { get; set; }
+        public int Код_спец { get; set; }
         public string Специальность { get; set; }
         public string Квалификация { get; set; }
     

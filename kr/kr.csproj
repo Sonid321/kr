@@ -81,11 +81,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddCli.xaml.cs">
+      <DependentUpon>AddCli.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddG.xaml.cs">
       <DependentUpon>AddG.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddSot.xaml.cs">
+      <DependentUpon>AddSot.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Client.cs">
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EditCli.xaml.cs">
+      <DependentUpon>EditCli.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditSot.xaml.cs">
+      <DependentUpon>EditSot.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gruppa.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -135,7 +147,23 @@
     <Compile Include="Window2.xaml.cs">
       <DependentUpon>Window2.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddCli.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddG.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddSot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditCli.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditSot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

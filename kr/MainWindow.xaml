@@ -9,89 +9,94 @@
         mc:Ignorable="d"
         Title="Авторизация"
         Height="380"
-        Background="#FF904825"
         Width="285"
-        WindowStartupLocation="CenterScreen" Icon="/Logo.png"
+        WindowStartupLocation="CenterScreen" 
+        Icon="/Logo.png"
         ResizeMode="NoResize"
         >
     <Grid>
-        <TextBox
+        <materialDesign:ColorZone Background="#FF4C3535">
+            <StackPanel Height="364">
+                <TextBox
+                Margin=" 0 100 0 0 "
+            x:Name ="login"
+            BorderBrush="Black"
+            Background="#FFCD9A7B"
+            materialDesign:HintAssist.Hint="Логин"
+             Style="{StaticResource MaterialDesignFilledTextBox}" Width="185"
+            />
+                <TextBox
+             Margin=" 0 10 0 0"
             x:Name="text"
-            Margin="80,233,80,0"
-            TextWrapping="Wrap"
             Text=""
-            VerticalAlignment="Top"
             BorderBrush="Black"
             Background="#FFCD9A7B"
             materialDesign:HintAssist.Hint="Пароль"
+            Style="{StaticResource MaterialDesignFilledTextBox}" Width="184" 
             />
-        <PasswordBox
-            x:Name="pwt"
-            Margin="80,233,80,0"
-            VerticalAlignment="Top"
-            BorderBrush="#FF0A0806"
-            Background="#FFCD9A7B"
+                <PasswordBox
+             x:Name="pwt"
+             Margin=" 0 -45 0 0"
+             BorderBrush="Black"
+             Background="#FFCD9A7B"
+             materialDesign:HintAssist.Hint="Пароль" Height="47" 
+             Style="{StaticResource  MaterialDesignFilledPasswordBox}"
+                    Width="184"
             />
-        <Button
+                <CheckBox
+            Content="Показать пароль"
+            Margin="0 10 0 0" 
+            Click="CheckBox_Checked" 
+            Background="AliceBlue"
+            Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}"  HorizontalAlignment="Stretch" Width="185" Foreground="#DDFFFBFB"  >
+
+                </CheckBox>
+                <Button
             FontFamily="Arial Rounded MT Bold"
             Content="Войти"
-            HorizontalAlignment="Right"
-            Margin="0,0,155,41"
-            Width="70"
-            Background="#FF9E521C"
-            BorderBrush="Black"
-            Height="18"
-            VerticalAlignment="Bottom"
+            Margin="0 10 100 0"
+
             Click="Button_Click_1"
+            BorderBrush="Black"
+            Background="#FFCD9A7B"
+            Style="{DynamicResource MaterialDesignFlatButton }" Width="85"
             />
-        <Button
+            <Button
             FontFamily="Arial Rounded MT Bold"
             Content="Выход"
-            Margin="156,0,0,41"
-            Background="#FF9E521C"
+            Margin="0 -32 -100 0"
+            Click="Button_Click"    
             BorderBrush="Black"
-            HorizontalAlignment="Left"
-            Width="70" 
-            Click="Button_Click"
-            Height="18" 
-            VerticalAlignment="Bottom"
+            Background="#FFCD9A7B"
+            Style="{DynamicResource MaterialDesignFlatButton }" Width="82" 
             />
-        <Label
+            </StackPanel>
+
+        </materialDesign:ColorZone>
+        
+
+
+       
+        <!--<Label
             Content="Логин"
             HorizontalAlignment="Left"
             Margin="78,148,0,0"
             VerticalAlignment="Top"
             FontFamily="Arial Rounded MT Bold"
-            />
-        <Label
+            />-->
+        <!--<Label
             Content="Пароль"
             HorizontalAlignment="Left"
             Margin="75,200,0,0"
             VerticalAlignment="Top"
             FontFamily="Arial Rounded MT Bold"
-            />
-        <CheckBox
-            Content="Показать пароль"
-            HorizontalAlignment="Left"
-            Margin="78,252,0,0"
-            VerticalAlignment="Top" 
-            Click="CheckBox_Checked" 
-            BorderBrush="Black" 
-            Background="#FFBF9595" 
-            />
-        <TextBox
-            x:Name ="login"
-            BorderBrush="Black"
-            Background="#FFCD9A7B"
-            Margin="80,177,80,0"
-            TextWrapping="Wrap"
-            VerticalAlignment="Top"
-            materialDesign:HintAssist.Hint="Логин"
-            />
-        <Image
+            />-->
+
+
+        <!--<Image
             Margin="-8,-9,-15,182"
             Source="/МФЦ.png"
             Stretch="Fill"
-            />
+            />-->
     </Grid>
 </Window>

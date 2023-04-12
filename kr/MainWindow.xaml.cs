@@ -79,5 +79,10 @@ namespace kr
                 MessageBox.Show("Ошибка" + ex.Message.ToString());
             }
         }
+
+        private void login_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

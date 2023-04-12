@@ -22,16 +22,14 @@ namespace kr
     {
         Jurnal_Ucheta _jurnal_Ucheta;
         PraktikaEntities praktika;
-
-        public AddG(PraktikaEntities praktika)
+        Window1 _window1;
+        public AddG(Window1 window1)
         {
             InitializeComponent();
-            this.praktika = praktika;
+            this._window1 = window1;
             _jurnal_Ucheta = new Jurnal_Ucheta();
+            praktika = _window1.praktika;
             this.DataContext = _jurnal_Ucheta;
-            this.Clien.ItemsSource = praktika.Client.ToList();
-            this.Sotr1.ItemsSource = praktika.Sotrudniki.ToList();
-            this.Uslu.ItemsSource = praktika.VidUslug.ToList();
 
         }
         public AddG(PraktikaEntities praktika, Jurnal_Ucheta jurnal_Ucheta)
@@ -41,31 +39,28 @@ namespace kr
             this.DataContext = jurnal_Ucheta;
             this.Clien.ItemsSource = praktika.Jurnal_Ucheta.ToList();
         }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Jurnal_Ucheta JC = new Jurnal_Ucheta();
             var sot = Sotr1.SelectedItem as Sotrudniki;
             JC.Код_сотрудника = sot.КодCотрудника;
             var cli = Clien.SelectedItem as Client;
-            JC.Код_клиента = cli.Код_клиента;
+            JC.Код_клиента = cli.КодKлиента;
             var Ulug = Uslu.SelectedItem as VidUslug;
-            JC.Код_услуги= Ulug.Код_услуги;
+            JC.Код_услуги= Ulug.КодУслуги;
             JC.Номер_договора = Convert.ToInt32 (login_Copy.Text);
             JC.Комер_акта_накладной_= Convert.ToInt32(login_Copy1.Text);
             JC.Стоимость = Convert.ToInt32(login_Copy2.Text);
             JC.Код_плательщика = Convert.ToInt32(login_Copy3.Text);
-
             JC.Дата_подписания = DateTime.Parse(Convert.ToString(DataPic));
-
             MessageBox.Show("Запись успешно добавлена!");
-
             try
             {
                 praktika.Jurnal_Ucheta.Add(JC);
-                praktika.SaveChanges();           
-                Close();
-            }
+                praktika.SaveChanges();
+                _window1.ReadData();
+                Hide();
+            }   
             catch (Exception ex)
             {
 
@@ -76,6 +71,13 @@ namespace kr
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Clien.ItemsSource = praktika.Client.ToList();
+            this.Sotr1.ItemsSource = praktika.Sotrudniki.ToList();
+            this.Uslu.ItemsSource = praktika.VidUslug.ToList();
         }
     }
 }
