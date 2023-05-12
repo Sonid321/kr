@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Documents.DocumentStructures;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -21,33 +22,27 @@ namespace kr
     public partial class EditSot : Window
     {
         Sotrudniki _sotrudniki;
-        Window1 _window1;
+        Sotr _window1;
         PraktikaEntities database;
-        public EditSot(Sotrudniki sotrudniki, Window1 window1)
+        public EditSot(Sotrudniki sotrudniki, Sotr window1)
         {
             InitializeComponent();
             _sotrudniki = sotrudniki;
             _window1 = window1;
             database = _window1.praktika;
             DataContext = _sotrudniki;
+            
         }
 
         private void ValidateImput()
         {
             ///////
-            if (Uslu.SelectedIndex == -1)
-            {
-                _sotrudniki.Код_специальности = null;
-            }
-            else
-            {
-                _sotrudniki.Код_специальности = Uslu.SelectedIndex + 1;
-            }
+
             /////           
-          
+          _sotrudniki.Специальность = String.IsNullOrWhiteSpace(Uslu.Text) ? string.Empty : ((Uslu.Text, @"\d+").Text);
             _sotrudniki.ФИО = String.IsNullOrWhiteSpace(login_Copy4.Text) ? string.Empty : ((login_Copy4.Text, @"\d+").Text);
             _sotrudniki.Пол = String.IsNullOrWhiteSpace(login_Copy5.Text) ? string.Empty : ((login_Copy5.Text, @"\d+").Text);
-            _sotrudniki.Телефон = String.IsNullOrEmpty(login_Copy7.Text) ? 0 : int.Parse(Regex.Match(login_Copy7.Text, @"\d+").Value);
+            _sotrudniki.Телефон = String.IsNullOrEmpty(login_Copy7.Text) ? 0 : decimal.Parse(Regex.Match(login_Copy7.Text, @"\d+").Value);
             _sotrudniki.Адрес = String.IsNullOrWhiteSpace(login_Copy.Text) ? string.Empty : ((login_Copy.Text, @"\d+").Text);
             _sotrudniki.Документ = String.IsNullOrWhiteSpace(login_Copy6.Text) ? string.Empty : ((login_Copy6.Text, @"\d+").Text);
             _sotrudniki.Серия_Номер= String.IsNullOrWhiteSpace(login_Copy1.Text) ? 0 : decimal.Parse(Regex.Match(login_Copy1.Text, @"\d+").Value);         
@@ -58,7 +53,7 @@ namespace kr
         {
             ValidateImput();
             database.SaveChanges();
-            _window1.ReadData2();
+            _window1.ReadData1();
             Hide();
         }
 
@@ -69,8 +64,13 @@ namespace kr
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            Uslu.ItemsSource = database.Special.ToList();
-            Uslu.SelectedIndex = _sotrudniki.Код_специальности is null ? -1 : (int)_sotrudniki.Код_специальности;
+          
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

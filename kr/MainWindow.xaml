@@ -4,71 +4,82 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-
+        Background="{x:Null}"
+        AllowsTransparency="True"
         xmlns:local="clr-namespace:kr"
         mc:Ignorable="d"
         Title="Авторизация"
-        Height="380"
-        Width="285"
+        Height="295"
+        Width="270"
         WindowStartupLocation="CenterScreen" 
         Icon="/Logo.png"
         ResizeMode="NoResize"
+        WindowStyle="None"
+   MouseDown="Window_MouseDown"
         >
     <Grid>
-        <materialDesign:ColorZone Background="#FF4C3535">
-            <StackPanel Height="364">
-                <TextBox
-                Margin=" 0 100 0 0 "
-            x:Name ="login"
-            BorderBrush="Black"
-            Background="#FFCD9A7B"
-            materialDesign:HintAssist.Hint="Логин"
-             Style="{StaticResource MaterialDesignFilledTextBox}" Width="185"
+        <materialDesign:ColorZone Background="#FF4C3535" CornerRadius="30">
+            <StackPanel Height="305">
+                <materialDesign:PopupBox HorizontalAlignment="Right" Margin="15 15 15 0">
+                    <StackPanel>
+                        <Button x:Name="btn_helpme" ToolTip="Проблемы со входом в систему?" Margin="0 8 0 0" Content="Помогите мне" Click="helpMe"
+                         />
+                    </StackPanel>
+                </materialDesign:PopupBox>
+                <StackPanel  Orientation="Horizontal" Margin="30 60 10 0">
+                    <materialDesign:PackIcon
+                        Width="20"
+                        Height="25"
+                        Kind="AccountCircle"
+                        />
+                    <TextBox
+
+                 Margin=" 0 0 0 0 "
+              x:Name ="login1"
+             BorderBrush="Black"
+               Background="#FFCD9A7B"
+              materialDesign:HintAssist.Hint="Логин"
+              Width="185" Foreground="#DD000000" Height="25"
             />
-                <TextBox
-             Margin=" 0 10 0 0"
-            x:Name="text"
-            Text=""
-            BorderBrush="Black"
-            Background="#FFCD9A7B"
-            materialDesign:HintAssist.Hint="Пароль"
-            Style="{StaticResource MaterialDesignFilledTextBox}" Width="184" 
-            />
-                <PasswordBox
+                </StackPanel>
+                <StackPanel   Margin="30 20 10 0" Orientation="Horizontal"  >
+                    <materialDesign:PackIcon
+                        Width="20"
+                        Height="25"
+                        Kind="Password"
+                    Margin="0 0 0 0"
+                        />
+                    <PasswordBox
              x:Name="pwt"
-             Margin=" 0 -45 0 0"
+             Margin=" 0 0 0 0"
              BorderBrush="Black"
              Background="#FFCD9A7B"
-             materialDesign:HintAssist.Hint="Пароль" Height="47" 
-             Style="{StaticResource  MaterialDesignFilledPasswordBox}"
-                    Width="184"
+             Height="25" 
+             Style="{StaticResource  MaterialDesignRevealPasswordBox}"
+                    Width="184" Foreground="#DD000000"
+                     materialDesign:HintAssist.Hint="Пароль"
+                        materialDesign:PasswordBoxAssist.Password="{Binding Password1, Mode=TwoWay}"  
             />
-                <CheckBox
-            Content="Показать пароль"
-            Margin="0 10 0 0" 
-            Click="CheckBox_Checked" 
-            Background="AliceBlue"
-            Style="{StaticResource MaterialDesignFilterChipPrimaryOutlineCheckBox}"  HorizontalAlignment="Stretch" Width="185" Foreground="#DDFFFBFB"  >
-
-                </CheckBox>
+                </StackPanel>
+               
                 <Button
             FontFamily="Arial Rounded MT Bold"
             Content="Войти"
-            Margin="0 10 100 0"
+            Margin="0 10 85 0"
 
             Click="Button_Click_1"
             BorderBrush="Black"
             Background="#FFCD9A7B"
-            Style="{DynamicResource MaterialDesignFlatButton }" Width="85"
+            Style="{DynamicResource MaterialDesignFlatButton }" Width="85" Foreground="Black"
             />
             <Button
             FontFamily="Arial Rounded MT Bold"
             Content="Выход"
-            Margin="0 -32 -100 0"
+            Margin="0 -32 -120 0"
             Click="Button_Click"    
             BorderBrush="Black"
             Background="#FFCD9A7B"
-            Style="{DynamicResource MaterialDesignFlatButton }" Width="82" 
+            Style="{DynamicResource MaterialDesignFlatButton }" Width="82" Foreground="#FF040302" 
             />
             </StackPanel>
 

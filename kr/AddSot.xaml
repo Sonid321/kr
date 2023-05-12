@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:kr"
-        mc:Ignorable="d"
+        mc:Ignorable="d" AllowsTransparency="True"
         Title="Добавление сотрудника" Height="495" Width="300"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize"
+        ResizeMode="NoResize" WindowStyle="None" Background="Transparent" MouseDown="Window_MouseDown"
         >
     <Window.Resources>
         <Style BasedOn="{StaticResource MaterialDesignFilledTextBox}" TargetType="TextBox">
@@ -23,12 +23,12 @@
     </Window.Resources>
     <Grid Margin="0,0,0,-16">
         <Grid Margin="0,0,0,10">
-            <materialDesign:ColorZone Background="#FF4C3535">
+            <materialDesign:ColorZone Background="#FF4C3535" CornerRadius="30">
                 <StackPanel Height="479">
                     <TextBox
                  x:Name ="login_Copy4"
                  Background="#FFCD9A7B"
-                 Margin="0 0 0 0"
+                 Margin="0 25 0 0"
                  materialDesign:HintAssist.Hint="Сотрудник"
                  Text="{Binding ФИО}"
                  Style="{StaticResource MaterialDesignFilledTextBox}"
@@ -91,16 +91,14 @@
                  Text="{Binding Квалификация}"
                  Style="{StaticResource MaterialDesignFilledTextBox}"
                 />
-                    <ComboBox
-                x:Name="Uslu"             
-                SelectedIndex="{Binding Код_спец}"
-                ItemsSource="{Binding Код_спец}"
-                DisplayMemberPath="Специальность"
-                Margin="0 0 0 0"
-                materialDesign:HintAssist.Hint="Специальность" 
-                Height="43"
-                Background="#FFCD9A7B"
-                />
+                    <TextBox 
+                        x:Name="Spes"
+                        Text="{Binding Специальность}"
+                     Margin="0 0 0 0"
+                     materialDesign:HintAssist.Hint="Специальность" 
+                     Height="43"
+                     Background="#FFCD9A7B"
+                    />
                     <Button 
                  Margin="-150 10 0 0"
                  FontFamily="Arial Rounded MT Bold" 

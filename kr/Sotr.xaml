@@ -1,0 +1,109 @@
+﻿<Window x:Class="kr.Sotr"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kr"
+        mc:Ignorable="d"   xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Sotr" Height="555"
+        Width="1245" WindowStartupLocation="CenterScreen"
+        Icon="/Logo.png"
+        ResizeMode="NoResize"
+        WindowStyle="None" MouseDown="Window_MouseDown" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+
+    <Grid Background="#FF482F1A" >
+        <StackPanel Margin="685,10,-35,470">
+            <TextBlock x:Name="Name" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
+                                TextAlignment="Left" Height="28"  Width="203"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Width="125" Margin="0 0 0 0" >
+            <StackPanel HorizontalAlignment="Right"  Height="53" Margin="0 0 0 0" Width="72" >
+                <materialDesign:PopupBox Height="38" Width="55" Foreground="#DDFFFFFF" Background="#FFFFABAB">
+                    <StackPanel>
+                        <Button x:Name="close2" ToolTip="К главной" Margin="0 8 0 0" Content="На главную" Click="close"
+                         />
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
+        </StackPanel>
+        <Border BorderBrush="#FF4C1515" BorderThickness="20" Margin="0,90,0,0">
+
+        </Border>
+        <DataGrid 
+            x:Name="Grida2"
+            IsReadOnly="True"
+            ItemsSource="{Binding Sotrudniki}" 
+            AutoGenerateColumns="False"
+            Margin="20,105,20,50"
+            BorderBrush="#FF0A0806" Background="#FFBFB5B5">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ФИО}" Width="*" Header="Сотрудник" />
+                <DataGridTextColumn Binding="{Binding Пол}" Width="*" Header="Пол" />
+                <DataGridTextColumn Binding="{Binding Телефон}" Width="*" Header="Телефон" />
+                <DataGridTextColumn Binding="{Binding Адрес}" Width="*" Header="Адрес" />
+                <DataGridTextColumn Binding="{Binding Документ}" Width="*" Header="Документ" />
+                <DataGridTextColumn Binding="{Binding Серия_Номер}" Width="*" Header="Серия/номер" />
+                <DataGridTextColumn Binding="{Binding Семейное_положение}" Width="*" Header="Семейное положение" />
+                <DataGridTextColumn Binding="{Binding Квалификация}" Width="*" Header="Квалификация" />
+                <DataGridTextColumn Binding="{Binding Специальность}" Width="*" Header="Специальность " />
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                            x:Name="UpdateRecordButton"
+                                            Width="30"
+                                            Height="30"
+                                            Click="Edit2"
+                                            Style="{StaticResource MaterialDesignToolButton}"
+                                            ToolTip="Редактировать запись">
+                                <materialDesign:PackIcon Kind="Edit" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                            x:Name="DeleteRecordButton"
+                                            Width="30"
+                                            Height="30"
+                                            Click="DeleteRecordButton_Click_2"
+                                            Style="{StaticResource MaterialDesignToolButton}"
+                                            ToolTip="Удалить запись">
+                                <materialDesign:PackIcon Kind="Delete" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ToolBarTray IsLocked="True" Margin="20,0,20,15" Background="#FF463E3E" Height="35" VerticalAlignment="Bottom">
+            <ToolBar ClipToBounds="False" Width="1366" Style="{StaticResource MaterialDesignToolBar}" Background="#FF7D7676">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon
+                                    VerticalAlignment="Center"
+                                    Kind="Search"
+                                    Opacity=".56" />
+
+                    <TextBox
+                                    x:Name="SearchTextBox2"
+                                    MinWidth="300"
+                                    Margin="8,0,0,0"
+                                    VerticalAlignment="Center"
+                                    materialDesign:HintAssist.Hint="Поиск"
+                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+                                    BorderThickness="0"
+                                    FontSize="12" TextChanged="SearchTextBox_TextChanged2" />
+                </StackPanel>
+                <Label Content="Добавить запись" Style="{StaticResource MaterialDesignLabel}" Height="24"/>
+                <Button
+                            x:Name="CreateRecordButton2"                    
+                            Click="Addcl2"
+                            Style="{StaticResource MaterialDesignFlatSecondaryButton}" HorizontalAlignment="Left">
+                    <materialDesign:PackIcon Kind="AddBox" Foreground="Black" />
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+    </Grid>
+</Window>

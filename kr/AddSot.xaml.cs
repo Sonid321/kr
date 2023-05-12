@@ -21,8 +21,8 @@ namespace kr
     {
         Sotrudniki _sotrudniki;
         PraktikaEntities praktika;
-        Window1 _window1;
-        public AddSot(Window1 window1)
+        Sotr _window1;
+        public AddSot(Sotr window1)
         {
             InitializeComponent();
             this._window1 = window1;
@@ -35,14 +35,12 @@ namespace kr
             InitializeComponent();
             this.praktika = praktika;
             this.DataContext = sotrudniki;
-            this.Uslu.ItemsSource = praktika.Special.ToList();
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Sotrudniki JC = new Sotrudniki();
 
-            var sot = Uslu.SelectedItem as Special;
-            JC.Код_специальности = sot.Код_спец;
+            JC.Специальность = Convert.ToString(Spes.Text);
             ////
             JC.ФИО = Convert.ToString(login_Copy4.Text);
 
@@ -65,7 +63,7 @@ namespace kr
             {
                 praktika.Sotrudniki.Add(JC);
                 praktika.SaveChanges();
-                _window1.ReadData2();
+                _window1.ReadData1();
                 Hide();
             }
             catch (Exception ex)
@@ -82,7 +80,12 @@ namespace kr
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            this.Uslu.ItemsSource = praktika.Special.ToList();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

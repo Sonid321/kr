@@ -87,8 +87,14 @@
     <Compile Include="AddG.xaml.cs">
       <DependentUpon>AddG.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddRol.xaml.cs">
+      <DependentUpon>AddRol.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddSot.xaml.cs">
       <DependentUpon>AddSot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddUsl.xaml.cs">
+      <DependentUpon>AddUsl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Client.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -96,8 +102,14 @@
     <Compile Include="EditCli.xaml.cs">
       <DependentUpon>EditCli.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditRol.xaml.cs">
+      <DependentUpon>EditRol.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditSot.xaml.cs">
       <DependentUpon>EditSot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditUsl.xaml.cs">
+      <DependentUpon>EditUsl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gruppa.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -123,13 +135,17 @@
     <Compile Include="Raion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Rol.xaml.cs">
+      <DependentUpon>Rol.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs" />
     <Compile Include="Roules.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sotrudniki.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Sotr.xaml.cs">
+      <DependentUpon>Sotr.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Special.cs">
+    <Compile Include="Sotrudniki.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
@@ -155,7 +171,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddRol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddSot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddUsl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,7 +187,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditRol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditSot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditUsl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -179,6 +211,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Rol.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Sotr.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -228,6 +268,10 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourse\software-engineer.png" />
+    <Resource Include="Resourse\user.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Model1.Context.tt">

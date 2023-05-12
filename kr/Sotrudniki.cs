@@ -29,10 +29,9 @@ namespace kr
         public Nullable<decimal> Серия_Номер { get; set; }
         public string Семейное_положение { get; set; }
         public string Квалификация { get; set; }
-        public Nullable<int> Код_специальности { get; set; }
+        public string Специальность { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Jurnal_Ucheta> Jurnal_Ucheta { get; set; }
-        public virtual Special Special { get; set; }
     }
 }

@@ -65,7 +65,6 @@ namespace kr
             _Jurnal_Ucheta.Номер_договора = String.IsNullOrEmpty(login_Copy.Text) ? 0 : int.Parse(Regex.Match(login_Copy.Text, @"\d+").Value);
             _Jurnal_Ucheta.Комер_акта_накладной_ = String.IsNullOrEmpty(login_Copy1.Text) ? 0 : int.Parse(Regex.Match(login_Copy1.Text, @"\d+").Value);
             _Jurnal_Ucheta.Стоимость = String.IsNullOrEmpty(login_Copy2.Text) ? 0 : int.Parse(Regex.Match(login_Copy2.Text, @"\d+").Value);
-            _Jurnal_Ucheta.Код_плательщика = String.IsNullOrEmpty(login_Copy3.Text) ? 0 : int.Parse(Regex.Match(login_Copy3.Text, @"\d+").Value);
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -77,17 +76,23 @@ namespace kr
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Sotr1.ItemsSource = database.Sotrudniki.ToList();
-            Sotr1.SelectedIndex = _Jurnal_Ucheta.Код_сотрудника is null ? -1 : (int)_Jurnal_Ucheta.Код_сотрудника;
+            Sotr1.SelectedIndex = _Jurnal_Ucheta.Код_сотрудника is null ? -1 : (int)_Jurnal_Ucheta.Код_сотрудника - 1;
 
             klient.ItemsSource = database.Client.ToList();
-            klient.SelectedIndex = _Jurnal_Ucheta.Код_клиента is null ? -1 : (int)_Jurnal_Ucheta.Код_клиента;
+            klient.SelectedIndex = _Jurnal_Ucheta.Код_клиента is null ? -1 : (int)_Jurnal_Ucheta.Код_клиента - 1;
 
             Uslu.ItemsSource = database.VidUslug.ToList();
-            Uslu.SelectedIndex = _Jurnal_Ucheta.Код_услуги is null ? -1 : (int)_Jurnal_Ucheta.Код_услуги;
+            Uslu.SelectedIndex = _Jurnal_Ucheta.Код_услуги is null ? -1 : (int)_Jurnal_Ucheta.Код_услуги - 1;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

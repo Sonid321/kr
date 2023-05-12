@@ -22,7 +22,6 @@ namespace kr
         public Nullable<int> Номер_договора { get; set; }
         public Nullable<int> Комер_акта_накладной_ { get; set; }
         public Nullable<decimal> Стоимость { get; set; }
-        public Nullable<int> Код_плательщика { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual Sotrudniki Sotrudniki { get; set; }

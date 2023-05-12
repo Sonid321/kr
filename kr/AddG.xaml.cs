@@ -51,7 +51,6 @@ namespace kr
             JC.Номер_договора = Convert.ToInt32 (login_Copy.Text);
             JC.Комер_акта_накладной_= Convert.ToInt32(login_Copy1.Text);
             JC.Стоимость = Convert.ToInt32(login_Copy2.Text);
-            JC.Код_плательщика = Convert.ToInt32(login_Copy3.Text);
             JC.Дата_подписания = DateTime.Parse(Convert.ToString(DataPic));
             MessageBox.Show("Запись успешно добавлена!");
             try
@@ -78,6 +77,12 @@ namespace kr
             this.Clien.ItemsSource = praktika.Client.ToList();
             this.Sotr1.ItemsSource = praktika.Sotrudniki.ToList();
             this.Uslu.ItemsSource = praktika.VidUslug.ToList();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

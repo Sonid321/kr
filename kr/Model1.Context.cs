@@ -31,7 +31,6 @@ namespace kr
         public virtual DbSet<Raion> Raion { get; set; }
         public virtual DbSet<Roules> Roules { get; set; }
         public virtual DbSet<Sotrudniki> Sotrudniki { get; set; }
-        public virtual DbSet<Special> Special { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<VidUslug> VidUslug { get; set; }
         public virtual DbSet<Users> Users { get; set; }

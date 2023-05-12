@@ -1,17 +1,14 @@
-﻿<Window x:Class="kr.EditCli"
+﻿<Window x:Class="kr.EditUsl"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:kr"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-        mc:Ignorable="d" AllowsTransparency="True"
-        Title="EditCli" Height="365" Width="310"
+        xmlns:local="clr-namespace:kr"
+        mc:Ignorable="d"
+       WindowStyle="None" Background="Transparent" AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize" Loaded="Window_Loaded"
-                WindowStyle="None"
-        Background="Transparent" MouseDown="Window_MouseDown"
-        >
+        Title="AddUsl" Height="350" Width="345" Loaded="Window_Loaded" MouseDown="Window_MouseDown">
     <Window.Resources>
         <Style BasedOn="{StaticResource MaterialDesignFilledTextBox}" TargetType="TextBox">
             <Setter Property="materialDesign:HintAssist.IsFloating" Value="True" />
@@ -23,76 +20,56 @@
             <Setter Property="IsEditable" Value="True" />
         </Style>
     </Window.Resources>
-    <Grid>
-        <Grid>
-            <materialDesign:ColorZone Background="#FF4C3535" CornerRadius="30">
-                <StackPanel Height="384">
-                    <TextBox
+    <Grid Margin="0,0,10,60">
+        <materialDesign:ColorZone Background="#FF4C3535" CornerRadius="30" Margin="0,0,35,0">
+            <StackPanel Height="389">
+                <TextBox 
                  x:Name ="login_Copy4"
                  Background="#FFCD9A7B"
-                 Margin="0 40 0 0"
-                 materialDesign:HintAssist.Hint="Предприятие"
-                 Text="{Binding Наименование_предприятия}"
+                 Margin="0 30 0 0"
+                 materialDesign:HintAssist.Hint="Услуга"
+                 Text="{Binding Наименование_услуги}"
                  Style="{StaticResource MaterialDesignFilledTextBox}"
                 />
-                    <ComboBox
-                x:Name="Uslu"
-                SelectedIndex="{Binding Код_района}"
-                ItemsSource="{Binding Код_района}"
-                DisplayMemberPath="Район"
+                <ComboBox
+                x:Name="Group"
+                DisplayMemberPath="Группа"
                 Margin="0 0 0 0"
-                materialDesign:HintAssist.Hint="Район" 
+                materialDesign:HintAssist.Hint="Группа" 
                 Height="43"
                 Background="#FFCD9A7B"
                 />
-                    <TextBox
-                x:Name ="login_Copy"
+                <TextBox
+                x:Name ="Time"
                 Margin="0 0 0 0"
-                materialDesign:HintAssist.Hint="Адрес"
-                Text="{Binding Адрес}"
+                materialDesign:HintAssist.Hint="Время"
+                Text="{Binding Объем_работ}"
                 Style="{StaticResource MaterialDesignFilledTextBox}"
                 Background="#FFCD9A7B"
                 />
-                    <TextBox
-                x:Name ="login_Copy6"
+                <TextBox
+                x:Name ="Stoim"
                 Margin="0 0 0 0"
-                materialDesign:HintAssist.Hint="Клиент"
-                Text="{Binding ФИО}"
+                materialDesign:HintAssist.Hint="Стоимость"
+                Text="{Binding Базовая_стоимость}"
                 Style="{StaticResource MaterialDesignFilledTextBox}"
                 Background="#FFCD9A7B"
                 />
-                    <TextBox
-                x:Name ="login_Copy1"
-                Margin="0 0 0 0"
-                Background="#FFCD9A7B"
-                materialDesign:HintAssist.Hint="Телефон"
-                Text="{Binding Телефон}" 
-                     Style="{StaticResource MaterialDesignFilledTextBox}"
-                />
-                    <TextBox
-                x:Name ="login_Copy2"
-                Background="#FFCD9A7B"
-                Margin="0 0 0 0"
-                materialDesign:HintAssist.Hint="Должность"
-                Text="{Binding Должность}" 
-                Style="{StaticResource MaterialDesignFilledTextBox}"
-                />
-                    <Button 
+                <Button 
                  Margin="-150 10 0 0"
                  FontFamily="Arial Rounded MT Bold" 
                  Content="Изменить"
                  Click="Button_Click_1" Width="110"
                  Style="{StaticResource MaterialDesignFlatLightBgButton }"
                  />
-                    <Button FontFamily="Arial Rounded MT Bold"
+                <Button FontFamily="Arial Rounded MT Bold"
                 Content="Назад"
                 Margin="0 -32 -150 0"
                 Click="Button_Click"
                 Style="{StaticResource MaterialDesignFlatLightBgButton }"
                 Width="110"
                 />
-                </StackPanel>
-            </materialDesign:ColorZone>
-        </Grid>
+            </StackPanel>
+        </materialDesign:ColorZone>
     </Grid>
 </Window>

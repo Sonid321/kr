@@ -48,7 +48,6 @@ namespace kr
             _client.ФИО = String.IsNullOrWhiteSpace(login_Copy6.Text) ? string.Empty : ((login_Copy6.Text, @"\d+").Text);
             _client.Телефон = String.IsNullOrEmpty(login_Copy1.Text) ? 0 : decimal.Parse((login_Copy1.Text, @"\d+").Text) ;
             _client.Должность = String.IsNullOrWhiteSpace(login_Copy2.Text) ? string.Empty : ((login_Copy2.Text, @"\d+").Text);
-            _client.Код_плательщика = String.IsNullOrEmpty(login_Copy3.Text) ? 0 : int.Parse(Regex.Match(login_Copy3.Text, @"\d+").Value);
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -65,6 +64,12 @@ namespace kr
         {
             Uslu.ItemsSource = database.Raion.ToList();
             Uslu.SelectedIndex = _client.Код_района is null ? -1 : (int)_client.Код_района;
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

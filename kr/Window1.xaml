@@ -9,42 +9,21 @@
         Title="Главная"
         Height="555"
         Width="1245"
-        Background="#FF4C3535"
         WindowStartupLocation="CenterScreen"
         Icon="/Logo.png"
         ResizeMode="NoResize"
+        WindowStyle="None" MouseDown="Window_MouseDown" MouseLeftButtonDown="Window_MouseLeftButtonDown"
         >
-    <!--<Window.Style>
-        <Style TargetType="Window">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding ElementName=tabc, Path=SelectedIndex}" Value="1">
-                    <DataTrigger.EnterActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation To="500" Duration="0:0:0" Storyboard.TargetProperty="Width" />
-                                <DoubleAnimation To="500" Duration="0:0:0" Storyboard.TargetProperty="Height"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </DataTrigger.EnterActions>
-                    <DataTrigger.ExitActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation To="1150" Duration="0:0:0" Storyboard.TargetProperty="Width" />
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </DataTrigger.ExitActions>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-    </Window.Style>-->
     <TabControl x:Name="tabc"
                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
         Background="#FF4C3535"
         materialDesign:ColorZoneAssist.Mode="PrimaryDark"
         Style="{StaticResource MaterialDesignNavigationRailTabControl}"
-        TabStripPlacement="Top"
+        TabStripPlacement="Right"
              >
-        <TabItem>
+
+        <TabItem Margin="0 100 0 0">
+
             <TabItem.Header>
 
                 <StackPanel>
@@ -55,11 +34,51 @@
                         VerticalAlignment="Center"
                         Kind="BookCheck"
                         ToolTip="Журнал учета"
-                        />            
+                        />
                 </StackPanel>
+
             </TabItem.Header>
-            <Grid>
-                <Border BorderBrush="#FF4C1515" BorderThickness="20">
+
+            <Grid >
+                
+                <StackPanel Background="#FF482F1A" >
+                    <Border Width="87" Padding="3" Background="White" CornerRadius="100" HorizontalAlignment="Left" Height="85" Margin="0 0 0 0">
+                        <Ellipse>
+                            <Ellipse.Fill>
+                                <ImageBrush x:Name="Image"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                    </Border>
+                    <StackPanel Height="88" Width="1175"  Margin="0 -85 0 0" HorizontalAlignment="Left">
+                   
+                        <StackPanel Margin="0 10 650 0">
+                            <TextBlock x:Name="Role" Foreground="White" FontSize="22" FontWeight="SemiBold"
+                                TextAlignment="Left"  Width="206" />
+
+                        </StackPanel>
+
+                        <StackPanel Margin="0 10 650  0">
+                            <TextBlock x:Name="Name" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
+                                TextAlignment="Left" Height="28"  Width="203"/>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Right" Width="125" Margin="0 -50 0 0" >
+                            <StackPanel HorizontalAlignment="Right"  Height="53" Margin="0 0 0 0" Width="72" >
+                                <materialDesign:PopupBox Height="38" Width="55" Foreground="#DDFFFFFF" Background="#FFFFABAB">
+                                    <StackPanel>
+                                        <Button x:Name="Admin2" ToolTip="Таблица пользователи" Margin="0 8 0 0" Content="Пользователи" Click="POl"
+                         />
+                                        <Button x:Name="Sotr2" ToolTip="Таблица сотрруднки" Margin="0 8 0 0" Content="Сотрудники" Click="sot"
+                         />
+                                        <Button x:Name="close2" ToolTip="К авторизации" Margin="0 8 0 0" Content="К авторизации" Click="close"
+                         />
+                                    </StackPanel>
+                                </materialDesign:PopupBox>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </StackPanel>
+                </StackPanel>
+                <Border BorderBrush="#FF4C1515" BorderThickness="20" Margin="0,90,0,0">
 
                 </Border>
                 <DataGrid 
@@ -67,17 +86,16 @@
             IsReadOnly="True"
             ItemsSource="{Binding Jurnal_Ucheta}" 
             AutoGenerateColumns="False"
-            Margin="20,13,20,50"
+            Margin="20,104,20,50"
             BorderBrush="#FF0A0806" Background="#FFBFB5B5">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Sotrudniki.ФИО}" Width="110" Header="Сотрудник" />
-                        <DataGridTextColumn Binding="{Binding Client.ФИО}" Width="110" Header="Клиент" />
-                        <DataGridTextColumn Binding="{Binding VidUslug.Наименование_услуги}" Width="185" Header="Услуга" />
-                        <DataGridTextColumn Binding="{Binding Дата_подписания, ConverterCulture=ru-Ru}" Width="125" Header="Дата" />
-                        <DataGridTextColumn Binding="{Binding Номер_договора}" Width="125" Header="Номер договора" />
-                        <DataGridTextColumn Binding="{Binding Комер_акта_накладной_}" Width="125" Header="Накладная" />
-                        <DataGridTextColumn Binding="{Binding Стоимость,StringFormat=C0, ConverterCulture=ru-Ru}" Width="125" Header="Стоимость" />
-                        <DataGridTextColumn Binding="{Binding Код_плательщика}" Width="75" Header="Код плательщика" />
+                        <DataGridTextColumn Binding="{Binding Sotrudniki.ФИО}" Width="*" Header="Сотрудник" />
+                        <DataGridTextColumn Binding="{Binding Client.ФИО}" Width="*" Header="Клиент" />
+                        <DataGridTextColumn Binding="{Binding VidUslug.Наименование_услуги}" Width="*" Header="Услуга" />
+                        <DataGridTextColumn Binding="{Binding Дата_подписания, ConverterCulture=ru-Ru}" Width="*" Header="Дата" />
+                        <DataGridTextColumn Binding="{Binding Номер_договора}" Width="*" Header="Номер договора" />
+                        <DataGridTextColumn Binding="{Binding Комер_акта_накладной_}" Width="*" Header="Накладная" />
+                        <DataGridTextColumn Binding="{Binding Стоимость,StringFormat=C0, ConverterCulture=ru-Ru}" Width="*" Header="Стоимость" />
                         <DataGridTemplateColumn Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -93,25 +111,10 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button
-                                            x:Name="DeleteRecordButton"
-                                            Width="30"
-                                            Height="30"
-                                            Click="delClick"
-                                            Style="{StaticResource MaterialDesignToolButton}"
-                                            ToolTip="Удалить запись">
-                                        <materialDesign:PackIcon Kind="Delete" />
-                                    </Button>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
                 <ToolBarTray IsLocked="True" Margin="20,0,20,15" Background="#FF463E3E" Height="35" VerticalAlignment="Bottom">
-                    <ToolBar ClipToBounds="False" Width="1215" Style="{StaticResource MaterialDesignToolBar}" Background="#FF7D7676">
+                    <ToolBar ClipToBounds="False" Width="1366" Style="{StaticResource MaterialDesignToolBar}" Background="#FF7D7676">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon
                                     VerticalAlignment="Center"
@@ -154,102 +157,105 @@
                             Style="{StaticResource MaterialDesignFlatSecondaryButton}" HorizontalAlignment="Left">
                             <materialDesign:PackIcon Kind="AddBox" Foreground="Black" />
                         </Button>
+                        <StackPanel>
+                            <Button Content="Экспорт в эксель" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click"/>
+                            <Button Content="Вывод на печать" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click1" Margin=" 150 -32 200 0"/>
+                        </StackPanel>
                     </ToolBar>
+
                 </ToolBarTray>
+
+
             </Grid>
 
         </TabItem>
 
-        <!--<Label 
-            Content="Мои документы "
-            Margin="0,-1,996,0" 
-            Foreground="White"
-            FontFamily="Arial Black" 
-            HorizontalAlignment="Right"
-            Width="125" 
-            Height="24"
-            VerticalAlignment="Top"
-            />
-        <Image 
-            Source="/Logo.png"
-            Stretch="Fill" 
-            Margin="0,0,1117,0"
-            RenderTransformOrigin="0.5,0.5"
-            HorizontalAlignment="Right"
-            Width="32"
-            Height="22"
-            VerticalAlignment="Top"
-            >
-        </Image>-->
 
-        <!--<Button 
-            FontFamily="Arial Rounded MT Bold"
-            Content="Добавить"
-            Margin="30,0,0,30" 
-            Height="24"
-            VerticalAlignment="Bottom" 
-            Click="Addcl"
-            HorizontalAlignment="Left"
-            Width="125"
-            />      
-            />-->
-        <TabItem>
-            <TabItem.Header>
-                <StackPanel>
-                    <materialDesign:PackIcon
-                        Width="20"
-                        Height="20"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Kind="CardAccountDetails" Foreground="#DDFFFBFB"
-                        ToolTip="Клиенты "
-                    />
-                </StackPanel>
-            </TabItem.Header>
-            <Grid>
-                <Border BorderBrush="#FF4C1515" BorderThickness="20">
+        
+        <TabItem Margin="0 0 0 0">
+            <Grid Background="#FF482F1A">
+               
+                <Border BorderBrush="#FF4C1515" BorderThickness="20" Margin="0,90,0,0">
 
                 </Border>
-                <DataGrid 
+                <StackPanel>
+                    <Border Width="87" Padding="3" Background="White" CornerRadius="100" HorizontalAlignment="Left" Height="85" Margin="0,0,0,470">
+                        <Ellipse>
+                            <Ellipse.Fill>
+                                <ImageBrush x:Name="Image2"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                    </Border>
+                    <StackPanel Height="88" Width="1175"  Margin="0 -1025 0 0" HorizontalAlignment="Left">
+                        <StackPanel Margin="0 10 650 0">
+                            <TextBlock x:Name="Role2" Foreground="White" FontSize="22" FontWeight="SemiBold"
+                                TextAlignment="Left"  Width="206" />
+                        </StackPanel>
+
+                        <StackPanel Margin="0 10 650 0">
+                            <TextBlock x:Name="Name2" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
+                                TextAlignment="Left" Height="28"  Width="203"/>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Right" Width="125" Margin="0 -50 0 0" >
+                            <StackPanel HorizontalAlignment="Right"  Height="53" Margin="0 0 0 0"  Width="72" >
+                                <materialDesign:PopupBox Height="38" Width="55" Foreground="#DDFFFFFF" Background="#FFFFABAB">
+                                    <StackPanel>
+                                        <Button x:Name="Admin3" ToolTip="Таблица пользователи" Margin="0 8 0 0" Content="Пользователи" Click="POl"
+                         />
+                                        <Button x:Name="Sotr3" ToolTip="Таблица сотрруднки" Margin="0 8 0 0" Content="Сотрудники" Click="sot"
+                         />
+                                        <Button x:Name="close3" ToolTip="К авторизации" Margin="0 8 0 0" Content="К авторизации" Click="close"
+                         />
+                                    </StackPanel>
+                                </materialDesign:PopupBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+    
+                    <StackPanel/>
+                    <Border BorderBrush="#FF4C1515" BorderThickness="20" Margin="0,90,0,0">
+
+                    </Border>
+                    <DataGrid 
             x:Name="Grida1"
             IsReadOnly="True"
             ItemsSource="{Binding Client}" 
             AutoGenerateColumns="False"
-            Margin="20,13,20,50"
+            Margin="20,105,20,50"
             BorderBrush="#FF0A0806" Background="#FFBFB5B5">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Наименование_предприятия}" Width="*" Header="Предприятие" />
-                        <DataGridTextColumn Binding="{Binding Raion.Район}" Width="*" Header="Район" />
-                        <DataGridTextColumn Binding="{Binding Адрес}" Width="*" Header="Адрес" />
-                        <DataGridTextColumn Binding="{Binding ФИО}" Width="*" Header="Клиент" />
-                        <DataGridTextColumn Binding="{Binding Телефон}" Width="*" Header="Телефон" />
-                        <DataGridTextColumn Binding="{Binding Должность}" Width="*" Header="Должность" />
-                        <DataGridTextColumn Binding="{Binding Код_плательщика}" Width="*" Header="Код плательщика" />
-                        <DataGridTemplateColumn Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Наименование_предприятия}" Width="*" Header="Предприятие" />
+                            <DataGridTextColumn Binding="{Binding Raion.Район}" Width="*" Header="Район" />
+                            <DataGridTextColumn Binding="{Binding Адрес}" Width="*" Header="Адрес" />
+                            <DataGridTextColumn Binding="{Binding ФИО}" Width="*" Header="Клиент" />
+                            <DataGridTextColumn Binding="{Binding Телефон}" Width="*" Header="Телефон" />
+                            <DataGridTextColumn Binding="{Binding Должность}" Width="*" Header="Должность" />
+                            <DataGridTemplateColumn Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button
                                             x:Name="UpdateRecordButton1"
                                             Width="30"
                                             Height="30"
                                             Click="Edit1"
                                             Style="{StaticResource MaterialDesignToolButton}"
                                             ToolTip="Редактировать запись">
-                                        <materialDesign:PackIcon Kind="Edit" />
-                                    </Button>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-                <ToolBarTray IsLocked="True" Margin="20,0,20,15" Background="#FF463E3E" Height="35" VerticalAlignment="Bottom">
-                    <ToolBar ClipToBounds="False" Width="1215" Style="{StaticResource MaterialDesignToolBar}" Background="#FF7D7676">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon
+                                            <materialDesign:PackIcon Kind="Edit" />
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <ToolBarTray IsLocked="True" Margin="20,0,20,15" Background="#FF463E3E" Height="35" VerticalAlignment="Bottom">
+                        <ToolBar ClipToBounds="False" Width="1366" Style="{StaticResource MaterialDesignToolBar}" Background="#FF7D7676">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon
                                     VerticalAlignment="Center"
                                     Kind="Search"
                                     Opacity=".56" />
-                            <TextBox
+                                <TextBox
                                     x:Name="SearchTextBox1"
                                     MinWidth="300"
                                     Margin="8,0,0,0"
@@ -258,85 +264,18 @@
                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                     BorderThickness="0"
                                     FontSize="12" TextChanged="SearchTextBox_TextChanged1" />
-                        </StackPanel>
-                        <Label Content="Добавить запись" Style="{StaticResource MaterialDesignLabel}" Height="24"/>
-                        <Button
+                            </StackPanel>
+                            <Label Content="Добавить запись" Style="{StaticResource MaterialDesignLabel}" Height="24"/>
+                            <Button
                             x:Name="CreateRecordButton1"                    
                             Click="Addcl1"
                             Style="{StaticResource MaterialDesignFlatSecondaryButton}" HorizontalAlignment="Left">
-                            <materialDesign:PackIcon Kind="AddBox" Foreground="Black" />
-                        </Button>
-                    </ToolBar>
-                </ToolBarTray>
-            </Grid>
-        </TabItem>
-        <TabItem>
-            <Grid>
-                <Border BorderBrush="#FF4C1515" BorderThickness="20">
-
-                </Border>
-                <DataGrid 
-            x:Name="Grida2"
-            IsReadOnly="True"
-            ItemsSource="{Binding Sotrudniki}" 
-            AutoGenerateColumns="False"
-            Margin="20,13,20,50"
-            BorderBrush="#FF0A0806" Background="#FFBFB5B5">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding ФИО}" Width="*" Header="Сотрудник" />
-                        <DataGridTextColumn Binding="{Binding Пол}" Width="75" Header="Пол" />
-                        <DataGridTextColumn Binding="{Binding Телефон}" Width="100" Header="Телефон" />
-                        <DataGridTextColumn Binding="{Binding Адрес}" Width="*" Header="Адрес" />
-                        <DataGridTextColumn Binding="{Binding Документ}" Width="*" Header="Документ" />
-                        <DataGridTextColumn Binding="{Binding Серия_Номер}" Width="*" Header="Серия/номер" />
-                        <DataGridTextColumn Binding="{Binding Семейное_положение}" Width="*" Header="Семейное положение" />
-                        <DataGridTextColumn Binding="{Binding Квалификация}" Width="*" Header="Квалификация" />
-                        <DataGridTextColumn Binding="{Binding Special.Специальность}" Width="*" Header="Специальность " />
-                        <DataGridTemplateColumn Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button
-                                            x:Name="UpdateRecordButton"
-                                            Width="30"
-                                            Height="30"
-                                            Click="Edit2"
-                                            Style="{StaticResource MaterialDesignToolButton}"
-                                            ToolTip="Редактировать запись">
-                                        <materialDesign:PackIcon Kind="Edit" />
-                                    </Button>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-                <ToolBarTray IsLocked="True" Margin="20,0,20,15" Background="#FF463E3E" Height="35" VerticalAlignment="Bottom">
-                    <ToolBar ClipToBounds="False" Width="1215" Style="{StaticResource MaterialDesignToolBar}" Background="#FF7D7676">
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon
-                                    VerticalAlignment="Center"
-                                    Kind="Search"
-                                    Opacity=".56" />
-
-                            <TextBox
-                                    x:Name="SearchTextBox2"
-                                    MinWidth="300"
-                                    Margin="8,0,0,0"
-                                    VerticalAlignment="Center"
-                                    materialDesign:HintAssist.Hint="Поиск"
-                                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                                    BorderThickness="0"
-                                    FontSize="12" TextChanged="SearchTextBox_TextChanged2" />
-                        </StackPanel>
-                        <Label Content="Добавить запись" Style="{StaticResource MaterialDesignLabel}" Height="24"/>
-                        <Button
-                            x:Name="CreateRecordButton2"                    
-                            Click="Addcl2"
-                            Style="{StaticResource MaterialDesignFlatSecondaryButton}" HorizontalAlignment="Left">
-                            <materialDesign:PackIcon Kind="AddBox" Foreground="Black" />
-                        </Button>
-                    </ToolBar>
-                </ToolBarTray>
-            </Grid>
+                                <materialDesign:PackIcon Kind="AddBox" Foreground="Black" />
+                            </Button>
+                        </ToolBar>
+                    </ToolBarTray>
+                </Grid>
+                
             <TabItem.Header>
                 <StackPanel>
 
@@ -346,12 +285,12 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Kind="BriefcaseVariant"
-                          ToolTip="Сотрудники "
+                          ToolTip="Клиенты " Foreground="#DDFFFFFF"
                     />
                 </StackPanel>
             </TabItem.Header>
         </TabItem>
-        <TabItem>
+        <TabItem Margin="0 -100 0 0">
 
             <TabItem.Header>
                 <StackPanel>
@@ -365,34 +304,67 @@
                     />
                 </StackPanel>
             </TabItem.Header>
-            <Grid>
-                <Border BorderBrush="#FF4C1515" BorderThickness="20">
+            <Grid Background="#FF482F1A">
+                
+                <Border BorderBrush="#FF4C1515" BorderThickness="20" Margin="0,90,0,0">
 
                 </Border>
+                <StackPanel>
+                    <Border Width="87" Padding="3" Background="White" CornerRadius="100" HorizontalAlignment="Left" Height="85" Margin="0,0,0,470">
+                        <Ellipse>
+                            <Ellipse.Fill>
+                                <ImageBrush x:Name="Image3"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                    </Border>
+                    <StackPanel Height="88" Width="1175"  Margin="0 -1025 0 0" HorizontalAlignment="Left">
+                        <StackPanel Margin="0 10 650 0">
+                            <TextBlock x:Name="Role3" Foreground="White" FontSize="22" FontWeight="SemiBold"
+                                TextAlignment="Left"  Width="206" />
+                        </StackPanel>
+
+                        <StackPanel Margin="0 10 650 0">
+                            <TextBlock x:Name="Name3" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
+                                TextAlignment="Left" Height="28"  Width="203"/>
+                        </StackPanel>
+
+                        <StackPanel HorizontalAlignment="Right" Width="125" Margin="0 -50 0 0" >
+                            <StackPanel HorizontalAlignment="Right"  Height="53" Margin="0 0 0 0" Width="72" >
+                                <materialDesign:PopupBox Height="38" Width="55" Foreground="#DDFFFFFF" Background="#FFFFABAB">
+                                    <StackPanel>
+                                        <Button x:Name="Admin" ToolTip="Таблица пользователи" Margin="0 8 0 0" Content="Пользователи" Click="POl"
+                         />
+                                        <Button x:Name="Sotr" ToolTip="Таблица сотрруднки" Margin="0 8 0 0" Content="Сотрудники" Click="sot"
+                         />
+                                        <Button x:Name="close6" ToolTip="К авторизации" Margin="0 8 0 0" Content="К авторизации" Click="close"
+                         />
+                                    </StackPanel>
+                                </materialDesign:PopupBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+
                 <DataGrid 
             x:Name="Grida3"
             IsReadOnly="True"
-            ItemsSource="{Binding Jurnal_Ucheta}" 
+            ItemsSource="{Binding VidUslug}" 
             AutoGenerateColumns="False"
-            Margin="20,13,20,50"
+            Margin="20,105,20,50"
             BorderBrush="#FF0A0806" Background="#FFBFB5B5">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Sotrudniki.ФИО}" Width="110" Header="Сотрудник" />
-                        <DataGridTextColumn Binding="{Binding Client.ФИО}" Width="110" Header="Клиент" />
-                        <DataGridTextColumn Binding="{Binding VidUslug.Наименование_услуги}" Width="185" Header="Услуга" />
-                        <DataGridTextColumn Binding="{Binding Дата_подписания, ConverterCulture=ru-Ru}" Width="125" Header="Дата" />
-                        <DataGridTextColumn Binding="{Binding Номер_договора}" Width="125" Header="Номер договора" />
-                        <DataGridTextColumn Binding="{Binding Комер_акта_накладной_}" Width="125" Header="Накладная" />
-                        <DataGridTextColumn Binding="{Binding Стоимость,StringFormat=C0, ConverterCulture=ru-Ru}" Width="125" Header="Стоимость" />
-                        <DataGridTextColumn Binding="{Binding Код_плательщика}" Width="75" Header="Код плательщика" />
+                        <DataGridTextColumn Binding="{Binding Наименование_услуги}" Width="*" Header="Услуга" />
+                        <DataGridTextColumn Binding="{Binding Gruppa.Группа}" Width="*" Header="Группа" />
+                        <DataGridTextColumn Binding="{Binding Объем_работ}" Width="*" Header="Время работы" />
+                        <DataGridTextColumn Binding="{Binding Базовая_стоимость,StringFormat=C0, ConverterCulture=ru-Ru}" Width="*" Header="Стоимость" />
                         <DataGridTemplateColumn Width="*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button
-                                            x:Name="UpdateRecordButton"
+                                            x:Name="UpdateRecordButton1"
                                             Width="30"
                                             Height="30"
-                                            Click="Edit"
+                                            Click="Edit3"
                                             Style="{StaticResource MaterialDesignToolButton}"
                                             ToolTip="Редактировать запись">
                                         <materialDesign:PackIcon Kind="Edit" />
@@ -400,25 +372,10 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button
-                                            x:Name="DeleteRecordButton"
-                                            Width="30"
-                                            Height="30"
-                                            Click="delClick"
-                                            Style="{StaticResource MaterialDesignToolButton}"
-                                            ToolTip="Удалить запись">
-                                        <materialDesign:PackIcon Kind="Delete" />
-                                    </Button>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
                 <ToolBarTray IsLocked="True" Margin="20,0,20,15" Background="#FF463E3E" Height="35" VerticalAlignment="Bottom">
-                    <ToolBar ClipToBounds="False" Width="1215" Style="{StaticResource MaterialDesignToolBar}" Background="#FF7D7676">
+                    <ToolBar ClipToBounds="False" Width="1400" Style="{StaticResource MaterialDesignToolBar}" Background="#FF7D7676">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon
                                     VerticalAlignment="Center"
@@ -433,31 +390,12 @@
                                     materialDesign:HintAssist.Hint="Поиск"
                                     materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
                                     BorderThickness="0"
-                                    FontSize="12" TextChanged="SearchTextBox_TextChanged" />
-                            <Button
-                                    x:Name="DeleteRecordButton3"
-                                    Padding="0"
-                                    Click="DeleteRecordButton_Click"
-                                    Style="{StaticResource MaterialDesignFlatDarkButton}">
-                                <materialDesign:PackIcon Kind="ClearBox" />
-                            </Button>
+                                    FontSize="12" TextChanged="SearchTextBox_TextChanged21" />
                         </StackPanel>
-                        <DatePicker
-                                x:Name="After3"
-                                Margin="8,0,8,0"
-                                materialDesign:TextFieldAssist.PrefixText="C: "
-                                SelectedDateChanged="DatePicker_SelectedDateChanged"
-                                Style="{StaticResource MaterialDesignDatePicker}" />
-                        <DatePicker
-                                x:Name="Before3"
-                                Margin="8,0,8,0"
-                                materialDesign:TextFieldAssist.PrefixText="По: "
-                                SelectedDateChanged="DatePicker_SelectedDateChanged"
-                                Style="{StaticResource MaterialDesignDatePicker}" />
                         <Label Content="       Добавить запись        " Style="{StaticResource MaterialDesignLabel}" Height="24"/>
                         <Button
                             x:Name="CreateRecordButton3"                    
-                            Click="Addcl"
+                            Click="Addcl12"
                             Style="{StaticResource MaterialDesignFlatSecondaryButton}" HorizontalAlignment="Left">
                             <materialDesign:PackIcon Kind="AddBox" Foreground="Black" />
                         </Button>

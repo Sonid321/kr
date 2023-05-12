@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:kr"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         x:Class="kr.AddG"
-        mc:Ignorable="d"
+        mc:Ignorable="d" AllowsTransparency="True"
         Title="Добавление"
-        Height="455"
+        Height="400"
         Width="310"
         WindowStartupLocation="CenterScreen" 
         Icon="/Logo.png"
-        ResizeMode="NoResize" Loaded="Window_Loaded"
+        ResizeMode="NoResize" Loaded="Window_Loaded"         WindowStyle="None"
+        Background="Transparent" MouseDown="Window_MouseDown"
         >
     <Window.Resources>
         <Style BasedOn="{StaticResource MaterialDesignFilledTextBox}" TargetType="TextBox">
@@ -26,13 +27,13 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <materialDesign:ColorZone Background="#FF4C3535">
+        <materialDesign:ColorZone Background="#FF4C3535" CornerRadius="30">
             <StackPanel Height="439">
                 <ComboBox x:Name="Sotr1"
                   SelectedItem="{Binding КодCотрудника}"
                   ItemsSource="{Binding КодCотрудника}"
                   DisplayMemberPath="ФИО"
-                  Margin="0 0 0 0 "
+                  Margin="0 40 0 0 "
                   Background="#FFCD9A7B"
                   materialDesign:HintAssist.Hint="Сотрудник" Height="43"       
                   />
@@ -86,15 +87,6 @@
                 Text="{Binding Стоимость}" 
                      Style="{StaticResource MaterialDesignFilledTextBox}"
                 />
-
-                <TextBox
-            x:Name ="login_Copy3"
-                                Background="#FFCD9A7B"
-            Margin="0 0 0 0"
-            materialDesign:HintAssist.Hint="Код плательщика"
-            Text="{Binding Код_плательщика}"
-                 Style="{StaticResource MaterialDesignFilledTextBox}"
-            />
                 <Button 
                     Margin="-150 10 0 0"
             FontFamily="Arial Rounded MT Bold" 

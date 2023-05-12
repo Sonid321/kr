@@ -15,46 +15,43 @@ using System.Windows.Shapes;
 namespace kr
 {
     /// <summary>
-    /// Логика взаимодействия для AddCli.xaml
+    /// Логика взаимодействия для AddRol.xaml
     /// </summary>
-    public partial class AddCli : Window
+    public partial class AddRol : Window
     {
-        Client _client;
+        Users _client;
         PraktikaEntities praktika;
-        Window1 _window1;
-        public AddCli(Window1 window1)
+        Rol _window1;
+        public AddRol(Rol window1)
         {
-            InitializeComponent();
+            InitializeComponent(); 
             this._window1 = window1;
-            _client = new Client();
+            _client = new Users();
             praktika = _window1.praktika;
             this.DataContext = _client;
         }
 
 
-        public AddCli(PraktikaEntities praktika, Client client)
+        public AddRol(PraktikaEntities praktika, Users client)
         {
             InitializeComponent();
             this.praktika = praktika;
             this.DataContext = client;
-            this.Uslu.ItemsSource = praktika.Raion.ToList();
+            this.Ro.ItemsSource = praktika.Roules.ToList();
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Client JC = new Client();
-            var sot = Uslu.SelectedItem as Raion;
-            JC.Код_района = sot.Код_района;
-            JC.Адрес = Convert.ToString(login_Copy.Text);
-            JC.ФИО = Convert.ToString(login_Copy6.Text);
-            JC.Наименование_предприятия = Convert.ToString(login_Copy4.Text);
-            JC.Телефон = Convert.ToDecimal(login_Copy1.Text);
-            JC.Должность = Convert.ToString(login_Copy2.Text);
+            Users JC = new Users();
+            var sot = Ro.SelectedItem as Roules;
+            JC.ID = sot.ID;
+            JC.FIO = Convert.ToString(log.Text);
+            JC.Password = Convert.ToString(pas.Text);
             MessageBox.Show("Запись успешно добавлена!");
             try
             {
-                praktika.Client.Add(JC);
+                praktika.Users.Add(JC);
                 praktika.SaveChanges();
-                _window1.ReadData1();
+                _window1.udat();
                 Hide();
             }
             catch (Exception ex)
@@ -71,7 +68,7 @@ namespace kr
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            this.Uslu.ItemsSource = praktika.Raion.ToList();
+            this.Ro.ItemsSource = praktika.Roules.ToList();
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

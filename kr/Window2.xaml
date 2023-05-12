@@ -3,14 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:kr"
+        xmlns:local="clr-namespace:kr" AllowsTransparency="True"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="kr.Window2"
-        mc:Ignorable="d"
-        Title="Изменение" Height="465" Width="310"
+        mc:Ignorable="d" Background="Transparent" WindowStyle="None"
+        Title="Изменение" Height="400" Width="310"
 
         WindowStartupLocation="CenterScreen" 
         Icon="/Logo.png"
-        ResizeMode="NoResize" Loaded="Window_Loaded"
+        ResizeMode="NoResize" Loaded="Window_Loaded" MouseDown="Window_MouseDown"
         >
     <Window.Resources>
         <Style BasedOn="{StaticResource MaterialDesignFilledTextBox}" TargetType="TextBox">
@@ -24,7 +24,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <materialDesign:ColorZone Background="#FF4C3535">
+        <materialDesign:ColorZone Background="#FF4C3535" CornerRadius="30">
             <StackPanel Height="449">
             <ComboBox x:Name="Sotr1"
             Background="#FFCD9A7B"
@@ -32,7 +32,7 @@
             ItemsSource="{Binding КодCотрудника}"
             DisplayMemberPath="ФИО"
             materialDesign:HintAssist.Hint="Сотрудник" Height="43"       
-            Margin="0 0 0 0" SelectedIndex="1"      
+            Margin="0 35 0 0" SelectedIndex="1"      
              />
             <ComboBox x:Name="klient"
             Background="#FFCD9A7B"
@@ -85,14 +85,7 @@
                      Style="{StaticResource MaterialDesignFilledTextBox}"
                 />
 
-            <TextBox
-            x:Name ="login_Copy3"
-            Margin="0 0 0 0"
-             Background="#FFCD9A7B"
-            materialDesign:HintAssist.Hint="Код плательщика"
-            Text="{Binding Код_плательщика}"
-             Style="{StaticResource MaterialDesignFilledTextBox}"
-            />
+           
                 <Button FontFamily="Arial Rounded MT Bold"
                 Content="Изменить"
                     Margin="-150 10 0 0"

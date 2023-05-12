@@ -27,7 +27,6 @@ namespace kr
         public string ФИО { get; set; }
         public Nullable<decimal> Телефон { get; set; }
         public string Должность { get; set; }
-        public Nullable<int> Код_плательщика { get; set; }
     
         public virtual Raion Raion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

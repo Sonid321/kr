@@ -1,9 +1,12 @@
 ﻿using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Wordprocessing;
 using MaterialDesignThemes.Wpf.Internal;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace kr
 {
@@ -24,12 +28,59 @@ namespace kr
     {
         public PraktikaEntities praktika { get; set; }
         public List<Jurnal_Ucheta> jurnals;
-        public Window1()
+        public Window1(string UserLogin, string Roles)
         {
             InitializeComponent();
+            Name.Text += $"Имя: {UserLogin}";
+            Role.Text += $"Роль: {Roles}";
+            if (Roles == "Admin")
+            {
+                Image.ImageSource = new BitmapImage(new Uri("C:\\Users\\Grigoriy\\Desktop\\kr\\kr\\Resourse\\software-engineer.png", UriKind.Absolute));
+            }
+            else if (Roles == "Manager")
+            {
+                Image.ImageSource = new BitmapImage(new Uri("C:\\Users\\Grigoriy\\Desktop\\kr\\kr\\Resourse\\user.png", UriKind.Absolute));
+            }
+            else if (Roles == "User")
+            {
+                //Image.ImageSource = new BitmapImage(new Uri("D:\\RentalCarProject\\RentalCarProject1\\RentalCarProject1\\Resources\\user.png", UriKind.Absolute));
+            }
+            else
+            {
+                //Image.ImageSource = new BitmapImage(new Uri("D:\\RentalCarProject\\RentalCarProject1\\RentalCarProject1\\Resources\\unknown.png", UriKind.Absolute));
+            }
+          
+            Name2.Text += $"Имя: {UserLogin}";
+            Role2.Text += $"Роль: {Roles}";
+            if (Roles == "Admin")
+            {
+                Image2.ImageSource = new BitmapImage(new Uri("C:\\Users\\Grigoriy\\Desktop\\kr\\kr\\Resourse\\software-engineer.png", UriKind.Absolute));
+            }
+            else if (Roles == "Manager")
+            {
+                Image2.ImageSource = new BitmapImage(new Uri("C:\\Users\\Grigoriy\\Desktop\\kr\\kr\\Resourse\\user.png", UriKind.Absolute));
+            }
+            else if (Roles == "User")
+            {
+                //Image.ImageSource = new BitmapImage(new Uri("D:\\RentalCarProject\\RentalCarProject1\\RentalCarProject1\\Resources\\user.png", UriKind.Absolute));
+            }
+            else
+            {
+                //Image.ImageSource = new BitmapImage(new Uri("D:\\RentalCarProject\\RentalCarProject1\\RentalCarProject1\\Resources\\unknown.png", UriKind.Absolute));
+            }
+            Name3.Text += $"Имя: {UserLogin}";
+            Role3.Text += $"Роль: {Roles}";
+            if (Roles == "Admin")
+            {
+                Image3.ImageSource = new BitmapImage(new Uri("C:\\Users\\Grigoriy\\Desktop\\kr\\kr\\Resourse\\software-engineer.png", UriKind.Absolute));
+            }
+            else if (Roles == "Manager")
+            {
+                Image3.ImageSource = new BitmapImage(new Uri("C:\\Users\\Grigoriy\\Desktop\\kr\\kr\\Resourse\\user.png", UriKind.Absolute));
+            }
             ReadData();
+            ReadData3();
             ReadData1();
-            ReadData2();
         }
         public void ReadData()
         {
@@ -41,10 +92,11 @@ namespace kr
             praktika = new PraktikaEntities();
             Grida1.ItemsSource = praktika.Client.ToList();
         }
-        public void ReadData2()
+
+        public void ReadData3()
         {
             praktika = new PraktikaEntities();
-            Grida2.ItemsSource = praktika.Sotrudniki.ToList();
+            Grida3.ItemsSource = praktika.VidUslug.ToList();
         }
         private void Edit(object sender, RoutedEventArgs e)
         {
@@ -59,17 +111,7 @@ namespace kr
             editing.Show();
         }
 
-        private void delClick(object sender, RoutedEventArgs e)
-        {
-            var selectedInvoice = ((sender as Button).DataContext as Jurnal_Ucheta);
-            if (MessageBox.Show($"Вы уверены, что хотите удалить запись под номером {selectedInvoice.Код_записи}?",
-                "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                praktika.Jurnal_Ucheta.Remove(selectedInvoice);
-                praktika.SaveChanges();
-                ReadData();
-            }
-        }
+
         private void Filtr1(object sender, RoutedEventArgs e)
         {
             Grida.ItemsSource = praktika.Jurnal_Ucheta.ToList();
@@ -84,7 +126,10 @@ namespace kr
 
         private void DeleteRecordButton_Click(object sender, RoutedEventArgs e)
         {
-            Grida.ItemsSource = praktika.Jurnal_Ucheta.ToList();
+            SearchTextBox.Text = null;
+            After.Text = null;
+            Before.Text = null;
+            ReadData();
         }
 
     private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -116,6 +161,155 @@ namespace kr
                 ReadData();
             }
         }
+       
+
+        private void Addcl1(object sender, RoutedEventArgs e)
+        {
+            var Dob1 = new AddCli(this);
+            Dob1.Show();
+        }
+       
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+        private bool IsMaximized = false;
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                if (IsMaximized)
+                {
+                    this.WindowState = WindowState.Normal;
+                    this.Width = 1250;
+                    this.Height = 720;
+
+                    IsMaximized = false;
+
+                }
+                else
+                {
+                    this.WindowState = WindowState.Maximized;
+                    IsMaximized = true;
+                }
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Grida.SelectAllCells();
+            Grida.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+            ApplicationCommands.Copy.Execute(null, Grida);
+            String resultat = (string)Clipboard.GetData(DataFormats.CommaSeparatedValue);
+            String result = (string)Clipboard.GetData(DataFormats.Text);
+            Grida.UnselectAllCells();
+            StreamWriter file = new StreamWriter(@"C:\Users\Grigoriy\Desktop\Test.xls", true, Encoding.GetEncoding(1251));
+            file.WriteLine(result.Replace(',', ' '));
+            file.Close();
+            MessageBox.Show("Exporting DataGrid data to Excel file created");
+            System.Diagnostics.Process.Start(@"C:\Users\Grigoriy\Desktop\Test.xls");
+        }
+
+        private void Button_Click1(object sender, RoutedEventArgs e)
+        {
+            Grida.Columns[7].Visibility = Visibility.Hidden;
+ 
+            System.Windows.Controls.PrintDialog Printdlg = new System.Windows.Controls.PrintDialog();
+            if ((bool)Printdlg.ShowDialog().GetValueOrDefault())
+            {
+                Size pageSize = new Size(Printdlg.PrintableAreaWidth, Printdlg.PrintableAreaHeight);
+                // sizing of the element.
+                Grida.Measure(pageSize);
+                Grida.Arrange(new Rect(0, 0, pageSize.Width, pageSize.Height));
+                Printdlg.PrintVisual(Grida, Title);
+            }
+            Grida.Columns[7].Visibility = Visibility.Visible;
+     
+        }
+
+        private void DeleteRecordButton_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
+
+
+
+
+        private void Edit3(object sender, RoutedEventArgs e)
+        {
+            var slec = (sender as Button).DataContext as VidUslug;
+            EditUsl editing = new EditUsl(slec, this);
+            editing.Show();
+        }
+
+        private void SearchTextBox_TextChanged21(object sender, TextChangedEventArgs e)
+        {
+            var input = (sender as TextBox).Text.ToLower();
+            int resultCount = praktika.VidUslug.Count(x => x.Наименование_услуги.Contains(input));
+            if (!(string.IsNullOrEmpty(input)))
+            {
+                Grida3.ItemsSource = praktika.VidUslug.Where(x => x.Наименование_услуги.Contains(input)).ToList();
+            }
+            else
+            {
+                ReadData3();
+            }
+        }
+
+        private void POl(object sender, RoutedEventArgs e)
+        {
+            string roles = Role.Text;
+
+            if (roles == "Роль: Admin")
+            {
+                var dob = new Rol(this);
+                dob.Show();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточно прав для совершения этой операции!");
+            }
+        }
+
+        private void sot(object sender, RoutedEventArgs e)
+        {
+            string roles = Role.Text;
+
+            if (roles == "Роль: Admin")
+            {
+                var dob = new Sotr(this);
+                dob.Show();
+            }
+            else
+            {
+                MessageBox.Show("Недостаточно прав для совершения этой операции!");
+            }
+        }
+
+        private void close(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Collapsed;
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+        }
+
+        private void close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Collapsed;
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+        }
+
+        private void Addcl2(object sender, RoutedEventArgs e)
+        {
+            var Dob1 = new AddUsl(this);
+            Dob1.Show();
+        }
+
         private void SearchTextBox_TextChanged1(object sender, TextChangedEventArgs e)
         {
             var input = (sender as TextBox).Text.ToLower();
@@ -130,36 +324,10 @@ namespace kr
             }
         }
 
-        private void Addcl1(object sender, RoutedEventArgs e)
+        private void Addcl12(object sender, RoutedEventArgs e)
         {
             var Dob1 = new AddCli(this);
             Dob1.Show();
-        }
-        private void SearchTextBox_TextChanged2(object sender, TextChangedEventArgs e)
-        {
-            var input = (sender as TextBox).Text.ToLower();
-            int resultCount = praktika.Sotrudniki.Count(x => x.ФИО.Contains(input));
-            if (!(string.IsNullOrEmpty(input)))
-            {
-                Grida2.ItemsSource = praktika.Sotrudniki.Where(x => x.ФИО.Contains(input)).ToList();
-            }
-            else
-            {
-                ReadData2();
-            }
-        }
-
-        private void Addcl2(object sender, RoutedEventArgs e)
-        {
-            var Dob1 = new AddSot(this);
-            Dob1.Show();
-        }
-
-        private void Edit2(object sender, RoutedEventArgs e)
-        {
-            var slec = (sender as Button).DataContext as Sotrudniki;
-            EditSot editing = new EditSot(slec, this);
-            editing.Show();
         }
     }
 }

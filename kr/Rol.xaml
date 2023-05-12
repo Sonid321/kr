@@ -1,0 +1,76 @@
+﻿<Window x:Class="kr.Rol"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:kr"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Sotr" Height="555"
+        Width="705" WindowStartupLocation="CenterScreen"
+        Icon="/Logo.png"
+        ResizeMode="NoResize"
+        WindowStyle="None" MouseDown="Window_MouseDown" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+
+    <Grid Background="#FF482F1A" >
+        <StackPanel Margin="685,10,-35,470">
+            <TextBlock x:Name="Name" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
+                                TextAlignment="Left" Height="28"  Width="203"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Right" Width="125" Margin="0 0 0 0" >
+            <StackPanel HorizontalAlignment="Right"  Height="53" Margin="0 0 0 0" Width="72" >
+                <materialDesign:PopupBox Height="38" Width="55" Foreground="#DDFFFFFF" Background="#FFFFABAB">
+                    <StackPanel>
+                        <Button x:Name="close2" ToolTip="К главной" Margin="0 8 0 0" Content="На главную" Click="close"
+                         />
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
+        </StackPanel>
+        <Border BorderBrush="#FF4C1515" BorderThickness="20" Margin="0,90,0,0">
+
+        </Border>
+        <DataGrid 
+            x:Name="Grida2"
+            IsReadOnly="True"
+            ItemsSource="{Binding Users}" 
+            AutoGenerateColumns="False"
+            Margin="20,105,20,50"
+            BorderBrush="#FF0A0806" Background="#FFBFB5B5">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Roules.Roles}" Width="*" Header="Роль" />
+                <DataGridTextColumn Binding="{Binding FIO}" Width="*" Header="Логин" />
+                <DataGridTextColumn Binding="{Binding Password}" Width="*" Header="Пароль" />
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button
+                                            x:Name="UpdateRecordButton"
+                                            Width="30"
+                                            Height="30"
+                                            Click="Edit2"
+                                            Style="{StaticResource MaterialDesignToolButton}"
+                                            ToolTip="Редактировать запись">
+                                <materialDesign:PackIcon Kind="Edit" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ToolBarTray IsLocked="True" Margin="20,0,20,15" Background="#FF463E3E" Height="35" VerticalAlignment="Bottom">
+            <ToolBar ClipToBounds="False" Width="1366" Style="{StaticResource MaterialDesignToolBar}" Background="#FF7D7676">
+                <StackPanel Orientation="Horizontal"/>
+                <Label Content="Добавить запись" Style="{StaticResource MaterialDesignLabel}" Height="24"/>
+                <Button
+                            x:Name="CreateRecordButton2"                    
+                            Click="Addcl2"
+                            Style="{StaticResource MaterialDesignFlatSecondaryButton}" HorizontalAlignment="Left">
+                    <materialDesign:PackIcon Kind="AddBox" Foreground="Black" />
+                </Button>
+                <RadioButton x:Name="onRepair" IsChecked="False" Content="Администратор"  Checked="onRepair_Checked" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left"  />
+                <RadioButton x:Name="breakDown" IsChecked="False" Content="Менеджер"  Checked="breakDown_Checked" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <RadioButton x:Name="clearFilter" IsChecked="False"  Content="Все" Checked="clearFilter_Checked" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left"  />
+            </ToolBar>
+        </ToolBarTray>
+    </Grid>
+</Window>

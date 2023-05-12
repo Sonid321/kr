@@ -27,24 +27,6 @@ namespace kr
             InitializeComponent();
             HS= new PraktikaEntities();
         }
-
-        private void CheckBox_Checked (object sender, RoutedEventArgs e)
-        {
-            var checkBox = sender as CheckBox;
-            if (checkBox.IsChecked.Value)
-            {
-                text.Text = pwt.Password; // скопируем в TextBox из PasswordBox
-                text.Visibility = Visibility.Visible; // TextBox - отобразить
-                pwt.Visibility = Visibility.Hidden; // PasswordBox - скрыть
-            }
-            else
-            {
-                pwt.Password = text.Text; // скопируем в PasswordBox из TextBox 
-                text.Visibility = Visibility.Hidden; // TextBox - скрыть
-                pwt.Visibility = Visibility.Visible; // PasswordBox - отобразить
-            }
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -52,37 +34,41 @@ namespace kr
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            try
+            Role roles = new Role();
+            var login = login1.Text;
+            var pass1 = pwt.Password;
+            if (HS.Users.Any(u => u.FIO == login && u.Password == pass1))
             {
-                var userAuth = HS.Users.FirstOrDefault(x => x.Login == login.Text
-                && x.Password == pwt.Password || x.Password == text.Text);
-                if (userAuth == null)
+                foreach (var client in HS.Users)
                 {
-                    MessageBox.Show("Неверный логин или пароль попробуйте снова", "Ошибка авторизации",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else
-                {
-                    switch (userAuth.Role)
+                    if (client.FIO == login)
                     {
-                        case 1:
-                            MessageBox.Show("Добрый день" + " " + userAuth.FIO);
-                            Window1 f1 = new Window1();
-                            f1.Show();
-                            Close();
-                            break;
+                        if (client.Password == pass1)
+                        {
+                            var role = HS.Roules.Find(client.Role);
+                            roles.UserLogin = login;
+                            roles.UserRole = role.Roles;
+                            this.Visibility = Visibility.Collapsed;
+                            Window1 administratorWindow = new Window1(roles.UserLogin, roles.UserRole);
+                            administratorWindow.Show();
+                        }
                     }
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Ошибка" + ex.Message.ToString());
+                MessageBox.Show("Проверьте вводимые данные");
             }
         }
-
-        private void login_TextChanged(object sender, TextChangedEventArgs e)
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
 
+        private void helpMe(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Обратитесь к системному администратору за помощью...");
         }
     }
 }
