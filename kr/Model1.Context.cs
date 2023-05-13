@@ -29,10 +29,10 @@ namespace kr
         public virtual DbSet<Gruppa> Gruppa { get; set; }
         public virtual DbSet<Jurnal_Ucheta> Jurnal_Ucheta { get; set; }
         public virtual DbSet<Raion> Raion { get; set; }
-        public virtual DbSet<Roules> Roules { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Sotrudniki> Sotrudniki { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<User> User { get; set; }
         public virtual DbSet<VidUslug> VidUslug { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
     }
 }

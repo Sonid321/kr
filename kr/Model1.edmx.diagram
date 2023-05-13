@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="03ae76a9016b4588b1dff8db65bdd89f" Name="Diagram1">
+      <Diagram DiagramId="7c789ef99dac43f6a5d7227c16e2b27b" Name="Diagram1">
         <EntityTypeShape EntityType="PraktikaModel.Client" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PraktikaModel.Gruppa" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PraktikaModel.Jurnal_Ucheta" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="PraktikaModel.Raion" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PraktikaModel.Roules" Width="1.5" PointX="5.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PraktikaModel.Roles" Width="1.5" PointX="5.75" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PraktikaModel.Sotrudniki" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
         <EntityTypeShape EntityType="PraktikaModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PraktikaModel.User" Width="1.5" PointX="8" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PraktikaModel.VidUslug" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="PraktikaModel.Users" Width="1.5" PointX="8" PointY="5.875" IsExpanded="true" />
         <AssociationConnector Association="PraktikaModel.FK_Client_Raion" ManuallyRouted="false" />
         <AssociationConnector Association="PraktikaModel.FK_Jurnal_Ucheta_Client" ManuallyRouted="false" />
         <AssociationConnector Association="PraktikaModel.FK_VidUslug_Gruppa" ManuallyRouted="false" />

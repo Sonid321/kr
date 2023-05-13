@@ -37,17 +37,17 @@ namespace kr
             Role roles = new Role();
             var login = login1.Text;
             var pass1 = pwt.Password;
-            if (HS.Users.Any(u => u.FIO == login && u.Password == pass1))
+            if (HS.User.Any(u => u.FIO == login && u.Password == pass1))
             {
-                foreach (var client in HS.Users)
+                foreach (var client in HS.User)
                 {
                     if (client.FIO == login)
                     {
                         if (client.Password == pass1)
                         {
-                            var role = HS.Roules.Find(client.Role);
+                            var role = HS.Roles.Find(client.Role);
                             roles.UserLogin = login;
-                            roles.UserRole = role.Roles;
+                            roles.UserRole = role.Role;
                             this.Visibility = Visibility.Collapsed;
                             Window1 administratorWindow = new Window1(roles.UserLogin, roles.UserRole);
                             administratorWindow.Show();

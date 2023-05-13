@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using DocumentFormat.OpenXml.Spreadsheet;
 using DocumentFormat.OpenXml.Wordprocessing;
+using kr.Properties;
 using MaterialDesignThemes.Wpf.Internal;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,16 @@ namespace kr
             InitializeComponent();
             Name.Text += $"Имя: {UserLogin}";
             Role.Text += $"Роль: {Roles}";
+            //if (Roles == "Admin")
+            //{
+            //    Image.ImageSource = new BitmapImage(new Uri("C:\\Users\\Grigoriy\\Desktop\\kr\\kr\\Resourse\\software-engineer.png", UriKind.Absolute));
+            //}
+            //else if (Roles == "Manager")
+            //{
+            //    Image.ImageSource = new BitmapImage(new Uri("C:\\Users\\Grigoriy\\Desktop\\kr\\kr\\Resourse\\user.png", UriKind.Absolute));
+            //}
+            //Name.Text += $"Имя: {UserLogin}";
+            //Role.Text += $"Роль: {Roles}";
             if (Roles == "Admin")
             {
                 Image.ImageSource = new BitmapImage(new Uri("C:\\Users\\Grigoriy\\Desktop\\kr\\kr\\Resourse\\software-engineer.png", UriKind.Absolute));
@@ -41,15 +52,7 @@ namespace kr
             {
                 Image.ImageSource = new BitmapImage(new Uri("C:\\Users\\Grigoriy\\Desktop\\kr\\kr\\Resourse\\user.png", UriKind.Absolute));
             }
-            else if (Roles == "User")
-            {
-                //Image.ImageSource = new BitmapImage(new Uri("D:\\RentalCarProject\\RentalCarProject1\\RentalCarProject1\\Resources\\user.png", UriKind.Absolute));
-            }
-            else
-            {
-                //Image.ImageSource = new BitmapImage(new Uri("D:\\RentalCarProject\\RentalCarProject1\\RentalCarProject1\\Resources\\unknown.png", UriKind.Absolute));
-            }
-          
+
             Name2.Text += $"Имя: {UserLogin}";
             Role2.Text += $"Роль: {Roles}";
             if (Roles == "Admin")

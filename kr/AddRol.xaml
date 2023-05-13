@@ -31,7 +31,7 @@
                     <ComboBox
                 x:Name="Ro"
 
-                DisplayMemberPath="Roles"
+                DisplayMemberPath="Role"
                 Margin="0 30 0 0"
                 materialDesign:HintAssist.Hint="Роль" 
                 Height="43"

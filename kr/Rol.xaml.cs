@@ -29,7 +29,7 @@ namespace kr
         public void udat() 
         {
             praktika = new PraktikaEntities();
-            Grida2.ItemsSource = praktika.Users.ToList();
+            Grida2.ItemsSource = praktika.User.ToList();
         }
         private void Addcl2(object sender, RoutedEventArgs e)
         {
@@ -72,22 +72,22 @@ namespace kr
 
         private void Edit2(object sender, RoutedEventArgs e)
         {
-            var slec = (sender as Button).DataContext as Users;
+            var slec = (sender as Button).DataContext as User;
             EditRol editing = new EditRol(slec, this);
             editing.Show();
         }
 
         private void onRepair_Checked(object sender, RoutedEventArgs e)
         {
-            Grida2.ItemsSource = praktika.Users.Where(x => x.Role == 1).ToList();
+            Grida2.ItemsSource = praktika.User.Where(x => x.Role == 1).ToList();
         }
         private void breakDown_Checked(object sender, RoutedEventArgs e)
         {
-            Grida2.ItemsSource = praktika.Users.Where(x => x.Role == 2).ToList();
+            Grida2.ItemsSource = praktika.User.Where(x => x.Role == 2).ToList();
         }
         private void clearFilter_Checked(object sender, RoutedEventArgs e)
         {
-            Grida2.ItemsSource = praktika.Users.ToList();
+            Grida2.ItemsSource = praktika.User.ToList();
         }
     }
 }

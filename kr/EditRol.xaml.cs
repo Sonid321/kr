@@ -20,10 +20,10 @@ namespace kr
     /// </summary>
     public partial class EditRol : Window
     {
-        Users _client;
+        User _client;
         Rol _window1;
         PraktikaEntities database;
-        public EditRol(Users client, Rol window1)
+        public EditRol(User client, Rol window1)
         {
             InitializeComponent();
             _client = client;
@@ -50,7 +50,7 @@ namespace kr
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)
         {
-            Ro.ItemsSource = database.Roules.ToList();
+            Ro.ItemsSource = database.Roles.ToList();
             Ro.SelectedIndex = _client.Role is null ? -1 : (int)_client.Role;
         }
 

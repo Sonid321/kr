@@ -37,7 +37,7 @@
             Margin="20,105,20,50"
             BorderBrush="#FF0A0806" Background="#FFBFB5B5">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Roules.Roles}" Width="*" Header="Роль" />
+                <DataGridTextColumn Binding="{Binding Roles.Role}" Width="*" Header="Роль" />
                 <DataGridTextColumn Binding="{Binding FIO}" Width="*" Header="Логин" />
                 <DataGridTextColumn Binding="{Binding Password}" Width="*" Header="Пароль" />
                 <DataGridTemplateColumn Width="*">
